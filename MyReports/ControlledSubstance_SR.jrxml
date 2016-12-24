@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-12-24T07:38:05 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ControlledSubstance_SR" pageWidth="140" pageHeight="802" columnWidth="140" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="986eec2d-73d9-4b34-8d00-2b679a41df61">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="EC Database"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<parameter name="RowId" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="RequestId" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT Field_1 = 'Y'
+FROM dbo.prescience_patient_alerts
+WHERE 
+	 dbo.prescience_patient_alerts."Id" = $P{RowId}  and  dbo.prescience_patient_alerts."RequestId" = $P{RequestId} and  dbo.prescience_patient_alerts."AlertDescription" = 'Potential CSA Abuse']]>
+	</queryString>
+	<field name="Field_1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="140" height="30" uuid="b02053e4-c865-4307-afca-0cbdea53398b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Field_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

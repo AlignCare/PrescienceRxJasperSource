@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-12-19T07:23:56 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ImpliedDiagnosis_SR" pageWidth="280" pageHeight="802" columnWidth="280" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="47d6b3dc-5c22-4739-a233-6f689fac219a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="Id" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="RequestId" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT dbo.prescience_patient_implied_diagnosis."ConditionName",
+	dbo.prescience_patient_implied_diagnosis."ConditionImpact"
+FROM dbo.prescience_patient_implied_diagnosis
+WHERE 
+	 dbo.prescience_patient_implied_diagnosis."Id" = $P{Id} and  dbo.prescience_patient_implied_diagnosis."RequestId" = $P{RequestId}]]>
+	</queryString>
+	<field name="ConditionName" class="java.lang.String"/>
+	<field name="ConditionImpact" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="0" y="0" width="180" height="30" uuid="6f724759-5b8e-4ce4-af65-be5046fc9d0b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{ConditionName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="6a65144f-42f8-43e9-ba53-714233b7a21a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ConditionImpact}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

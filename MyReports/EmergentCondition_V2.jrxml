@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-12-19T07:23:56 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EmergentCondition_V2" pageWidth="1500" pageHeight="1500" orientation="Landscape" columnWidth="1460" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5360033e-d223-4aaf-b8ed-bce05600c7a5">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver-pro/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/EmergentCondition_V2"/>
+	<parameter name="RequestId" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT dbo.prescience_patient_data."RequestId",
+	dbo.prescience_patient_data."CustomerId",
+	dbo.prescience_patient_data."LOB",
+	dbo.prescience_patient_data."BeneficiaryNumber",
+	dbo.prescience_patient_data."MonthYear",
+	dbo.prescience_patient_data."Product",
+	dbo.prescience_patient_data."ReportedDate",
+	dbo.prescience_patient_data."FirstName",
+	dbo.prescience_patient_data."LastName",
+	dbo.prescience_patient_data."Gender",
+	dbo.prescience_patient_data."DOB",
+	dbo.prescience_patient_data."MERLevel",
+	dbo.prescience_patient_data."Polypharm",
+	dbo.prescience_patient_data."Polyprescriber",
+	dbo.prescience_patient_data."TheraputicComplexity",
+	dbo.prescience_patient_data."CoordinationRisk",
+	dbo.prescience_patient_data."ConcurrentDrugCount",
+	dbo.prescience_patient_data."MERActualLevel",
+	dbo.prescience_patient_data."LoadDate",
+	dbo.prescience_patient_data."Id",
+	dbo.prescience_patient_data."PredominentProviderNPI",
+	dbo.prescience_patient_data."PredominentProviderIsNetworkParticipant",
+	dbo.prescience_patient_data."PredominentProviderSpecialtyName",
+	dbo.prescience_patient_data."PredominentProviderFirstName",
+	dbo.prescience_patient_data."PredominentProviderLastName",
+	dbo.prescience_patient_data."PredominentProviderMiddleName",
+	dbo.prescience_patient_data."PredominentProviderTitle",
+	dbo.prescience_patient_data."DifferentPrescribersInNetworkCount",
+	dbo.prescience_patient_data."DifferentPrescribersOutOfNetworkCount",
+	dbo.prescience_patient_data."UniqueDrugsBrandCount",
+	dbo.prescience_patient_data."UniqueDrugsGenericCount",
+	dbo.prescience_patient_data."ConcurrentDrugsDrugLast90DaysCount",
+	dbo.prescience_patient_data."ConcurrentDrugsAllDrugsCount",
+	dbo.prescience_patient_data."AbusePotentialDrugsControlledSubstanceHighCount",
+	dbo.prescience_patient_data."AbusePotentialDrugsControlledSubstanceMedCount",
+	dbo.prescience_patient_data."AbusePotentialDrugsControlledSubstanceLowCount",
+	dbo.prescience_patient_data."HrmStatus",
+	dbo.prescience_patient_data."RasStatus",
+	dbo.prescience_patient_data."DiabetesRxStatus",
+	dbo.prescience_patient_data."HypertensionStatus",
+	dbo.prescience_patient_data."CholestorolStatus",
+	dbo.prescience_patient_data."NumberOfHrmDrugs",
+	dbo.prescience_patient_data."DiabetesCoverage",
+	dbo.prescience_patient_data."HypertensionCoverage",
+	dbo.prescience_patient_data."CholesterolCoverage"
+FROM dbo.prescience_patient_data
+WHERE 
+	 dbo.prescience_patient_data."RequestId" = $P{RequestId}]]>
+	</queryString>
+	<field name="CustomerId" class="java.lang.Short"/>
+	<field name="LOB" class="java.lang.String"/>
+	<field name="BeneficiaryNumber" class="java.lang.String"/>
+	<field name="MonthYear" class="java.lang.String"/>
+	<field name="Product" class="java.lang.String"/>
+	<field name="ReportedDate" class="java.sql.Timestamp"/>
+	<field name="FirstName" class="java.lang.String"/>
+	<field name="LastName" class="java.lang.String"/>
+	<field name="Gender" class="java.lang.String"/>
+	<field name="DOB" class="java.sql.Timestamp"/>
+	<field name="MERLevel" class="java.lang.Short"/>
+	<field name="Polypharm" class="java.lang.Short"/>
+	<field name="Polyprescriber" class="java.lang.Short"/>
+	<field name="TheraputicComplexity" class="java.lang.Short"/>
+	<field name="CoordinationRisk" class="java.lang.Short"/>
+	<field name="ConcurrentDrugCount" class="java.lang.Short"/>
+	<field name="MERActualLevel" class="java.lang.Short"/>
+	<field name="LoadDate" class="java.sql.Timestamp"/>
+	<field name="Id" class="java.lang.String"/>
+	<field name="PredominentProviderNPI" class="java.lang.String"/>
+	<field name="PredominentProviderIsNetworkParticipant" class="java.lang.String"/>
+	<field name="PredominentProviderSpecialtyName" class="java.lang.String"/>
+	<field name="PredominentProviderFirstName" class="java.lang.String"/>
+	<field name="PredominentProviderLastName" class="java.lang.String"/>
+	<field name="PredominentProviderMiddleName" class="java.lang.String"/>
+	<field name="PredominentProviderTitle" class="java.lang.String"/>
+	<field name="DifferentPrescribersInNetworkCount" class="java.lang.Short"/>
+	<field name="DifferentPrescribersOutOfNetworkCount" class="java.lang.Short"/>
+	<field name="UniqueDrugsBrandCount" class="java.lang.Short"/>
+	<field name="UniqueDrugsGenericCount" class="java.lang.Short"/>
+	<field name="ConcurrentDrugsDrugLast90DaysCount" class="java.lang.Short"/>
+	<field name="ConcurrentDrugsAllDrugsCount" class="java.lang.Short"/>
+	<field name="AbusePotentialDrugsControlledSubstanceHighCount" class="java.lang.Short"/>
+	<field name="AbusePotentialDrugsControlledSubstanceMedCount" class="java.lang.Short"/>
+	<field name="AbusePotentialDrugsControlledSubstanceLowCount" class="java.lang.Short"/>
+	<field name="HrmStatus" class="java.lang.String"/>
+	<field name="RasStatus" class="java.lang.String"/>
+	<field name="DiabetesRxStatus" class="java.lang.String"/>
+	<field name="HypertensionStatus" class="java.lang.String"/>
+	<field name="CholestorolStatus" class="java.lang.String"/>
+	<field name="NumberOfHrmDrugs" class="java.lang.Short"/>
+	<field name="DiabetesCoverage" class="java.math.BigDecimal"/>
+	<field name="HypertensionCoverage" class="java.math.BigDecimal"/>
+	<field name="CholesterolCoverage" class="java.math.BigDecimal"/>
+	<sortField name="MERLevel"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="580" height="40" uuid="b961f3e7-9b04-428d-a236-58a59d43ab65"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Emergent Condition - Prioritization]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="fec2339c-b03a-4c39-9f63-d9950d2dbfe5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Time Span]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="30" uuid="96068c1b-28d2-4683-b06c-87afcbf135aa"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Patient Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="180" height="30" uuid="2aaa1416-71fe-4ce2-ad26-d9f8c64e4702">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condition Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="106" height="30" uuid="eaae0e01-814c-4b9f-90e0-181e2212ce17"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condition Impact]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="0" width="150" height="30" uuid="e416b70b-c657-4bd0-af91-57e3dedb7167"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Predominent Prescriber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="636" y="0" width="100" height="30" uuid="29d546a3-aeb8-4750-b976-f400aaf430c7"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Specialty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="736" y="0" width="60" height="30" uuid="716c8d07-6b27-48a7-a267-4c8379c43efe"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="796" y="0" width="120" height="30" uuid="28633e72-d21f-4603-81ba-603e9dcc037d"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Coordination Risk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="916" y="0" width="100" height="30" uuid="70fa2ed2-f245-48bd-ae1a-12c8e212a7fd"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Polypharmacy]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1016" y="0" width="100" height="30" uuid="1c750c42-c52f-4ee7-8ede-558b87a4a830"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Polyprovider]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1116" y="0" width="140" height="30" uuid="eef4520e-cf66-456c-a7cb-72ac318dee0f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Therapeutic Complexity]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="40c1373d-8d31-4290-b6fe-3fd00f88520b"/>
+				<textFieldExpression><![CDATA[$F{MonthYear}.substring(0,2) + "-" + $F{MonthYear}.substring(2,6)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="30" uuid="fd53df04-b08c-4fe0-9fe6-d28330611733"/>
+				<textFieldExpression><![CDATA[$F{BeneficiaryNumber}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="200" y="0" width="280" height="30" uuid="1ecdd377-337e-40aa-bf37-9772e403b1e0">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="Id">
+					<subreportParameterExpression><![CDATA[$F{Id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RequestId">
+					<subreportParameterExpression><![CDATA[$P{RequestId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["ImpliedDiagnosis_SR.jrxml"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="486" y="0" width="150" height="30" uuid="6edec913-c76b-412f-97b5-323647b51391"/>
+				<textFieldExpression><![CDATA[$F{PredominentProviderNPI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="636" y="0" width="100" height="30" uuid="3deb134d-69f5-4e3c-8ae3-e05877966281"/>
+				<textFieldExpression><![CDATA[$F{PredominentProviderSpecialtyName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="736" y="0" width="60" height="30" uuid="c67ba299-f278-4ffb-9edc-6a83d4728b32"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{MERLevel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="796" y="0" width="120" height="30" uuid="99783bca-c74d-4f5b-a849-54e11974c9d9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CoordinationRisk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="916" y="0" width="100" height="30" uuid="daa6bdaf-e372-4a1f-8782-90d63fb277b5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Polypharm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1016" y="0" width="100" height="30" uuid="a1bcfa0b-698b-421c-9b53-b2d0c6c29b77"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Polyprescriber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1116" y="0" width="140" height="30" uuid="b90d8ae6-d9a0-4484-8f54-1d4fb039acde"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{TheraputicComplexity}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
