@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-12-28T12:18:17 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CoordinationRisk_V3" pageWidth="1500" pageHeight="1500" orientation="Landscape" columnWidth="1460" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ea02cd06-10a1-4684-a090-0e84ccc58aea">
+	<property name="net.sf.jasperreports.data.adapter" value="PatientDatabase.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/CoordinationRisk_V3"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/CoordinationRisk_V3_files/main_jrxml"/>
+	<parameter name="RequestId" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT distinct [RequestId]
+      ,[CustomerId]
+      ,[LOB]
+      ,[BeneficiaryNumber]
+      ,[MonthYear]
+      ,[Product]
+      ,[ReportedDate]
+      ,[FirstName]
+      ,[LastName]
+      ,[Gender]
+      ,[DOB]
+      ,[MERLevel]
+      ,[Polypharm]
+      ,[Polyprescriber]
+      ,[TheraputicComplexity]
+      ,[CoordinationRisk]
+      ,[ConcurrentDrugCount]
+      ,[MERActualLevel]
+      ,[LoadDate]
+      ,[Id]
+      ,[UserId]
+      ,[PredominentProviderNPI]
+      ,[PredominentProviderIsNetworkParticipant]
+      ,[PredominentProviderSpecialtyName]
+      ,[PredominentProviderFirstName]
+      ,[PredominentProviderLastName]
+      ,[PredominentProviderMiddleName]
+      ,[PredominentProviderTitle]
+      ,[DifferentPrescribersInNetworkCount]
+      ,[DifferentPrescribersOutOfNetworkCount]
+      ,[UniqueDrugsBrandCount]
+      ,[UniqueDrugsGenericCount]
+      ,[ConcurrentDrugsDrugLast90DaysCount]
+      ,[ConcurrentDrugsAllDrugsCount]
+      ,[AbusePotentialDrugsControlledSubstanceHighCount]
+      ,[AbusePotentialDrugsControlledSubstanceMedCount]
+      ,[AbusePotentialDrugsControlledSubstanceLowCount]
+      ,[HrmStatus]
+      ,[RasStatus]
+      ,[DiabetesRxStatus]
+      ,[HypertensionStatus]
+      ,[CholestorolStatus]
+      ,[NumberOfHrmDrugs]
+      ,[DiabetesCoverage]
+      ,[HypertensionCoverage]
+      ,[CholesterolCoverage]
+	  ,(SELECT [dbo].[ufn_ControlledSubstance]([Id],[RequestId])) Field_1
+      , CASE WHEN LEN([dbo].[ufn_EcReason]([Id],[RequestId])) > 0 THEN 'Y' ELSE '' END AS Field_2
+	 ,	 (SELECT [dbo].[ufn_EcReason]([Id],[RequestId])) AlertDescription
+	  
+  FROM [dbo].[prescience_patient_data]
+  where 
+	 dbo.prescience_patient_data."RequestId" = $P{RequestId}]]>
+	</queryString>
+	<field name="CustomerId" class="java.lang.Short"/>
+	<field name="LOB" class="java.lang.String"/>
+	<field name="BeneficiaryNumber" class="java.lang.String"/>
+	<field name="MonthYear" class="java.lang.String"/>
+	<field name="Product" class="java.lang.String"/>
+	<field name="ReportedDate" class="java.sql.Timestamp"/>
+	<field name="FirstName" class="java.lang.String"/>
+	<field name="LastName" class="java.lang.String"/>
+	<field name="Gender" class="java.lang.String"/>
+	<field name="DOB" class="java.sql.Timestamp"/>
+	<field name="MERLevel" class="java.lang.Short"/>
+	<field name="Polypharm" class="java.lang.Short"/>
+	<field name="Polyprescriber" class="java.lang.Short"/>
+	<field name="TheraputicComplexity" class="java.lang.Short"/>
+	<field name="CoordinationRisk" class="java.lang.Short"/>
+	<field name="ConcurrentDrugCount" class="java.lang.Short"/>
+	<field name="MERActualLevel" class="java.lang.Short"/>
+	<field name="LoadDate" class="java.sql.Timestamp"/>
+	<field name="Id" class="java.lang.String"/>
+	<field name="PredominentProviderNPI" class="java.lang.String"/>
+	<field name="PredominentProviderIsNetworkParticipant" class="java.lang.String"/>
+	<field name="PredominentProviderSpecialtyName" class="java.lang.String"/>
+	<field name="PredominentProviderFirstName" class="java.lang.String"/>
+	<field name="PredominentProviderLastName" class="java.lang.String"/>
+	<field name="PredominentProviderMiddleName" class="java.lang.String"/>
+	<field name="PredominentProviderTitle" class="java.lang.String"/>
+	<field name="DifferentPrescribersInNetworkCount" class="java.lang.Short"/>
+	<field name="DifferentPrescribersOutOfNetworkCount" class="java.lang.Short"/>
+	<field name="UniqueDrugsBrandCount" class="java.lang.Short"/>
+	<field name="UniqueDrugsGenericCount" class="java.lang.Short"/>
+	<field name="ConcurrentDrugsDrugLast90DaysCount" class="java.lang.Short"/>
+	<field name="ConcurrentDrugsAllDrugsCount" class="java.lang.Short"/>
+	<field name="AbusePotentialDrugsControlledSubstanceHighCount" class="java.lang.Short"/>
+	<field name="AbusePotentialDrugsControlledSubstanceMedCount" class="java.lang.Short"/>
+	<field name="AbusePotentialDrugsControlledSubstanceLowCount" class="java.lang.Short"/>
+	<field name="HrmStatus" class="java.lang.String"/>
+	<field name="RasStatus" class="java.lang.String"/>
+	<field name="DiabetesRxStatus" class="java.lang.String"/>
+	<field name="HypertensionStatus" class="java.lang.String"/>
+	<field name="CholestorolStatus" class="java.lang.String"/>
+	<field name="NumberOfHrmDrugs" class="java.lang.Short"/>
+	<field name="DiabetesCoverage" class="java.math.BigDecimal"/>
+	<field name="HypertensionCoverage" class="java.math.BigDecimal"/>
+	<field name="CholesterolCoverage" class="java.math.BigDecimal"/>
+	<field name="Field_1" class="java.lang.String"/>
+	<field name="Field_2" class="java.lang.String"/>
+	<field name="AlertDescription" class="java.lang.String"/>
+	<sortField name="CoordinationRisk"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="0" y="0" width="580" height="40" uuid="8e2640e6-0854-482e-b08a-5d797540bc48"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Coordination Risk - Prioritization]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="8b4d807d-b2c1-4cb1-9cf7-3bec1c9b12e0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Time Span]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="30" uuid="03e75a4d-bd03-4021-87b4-904fb8e79140"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Patient Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="140" height="30" uuid="971f4c82-be1a-45e0-a0b4-c40dea1e08c1"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Predominent Prescriber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="0" width="100" height="30" uuid="9d01ee62-8cc8-4355-b54d-6589aaadc2c7"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Specialty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="110" height="30" uuid="70582530-fb75-4bfe-8e7b-5b6587052ec4"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Coordination Risk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="550" y="0" width="100" height="30" uuid="05ef9123-cd8a-4110-8917-cd4b4a2a33fc"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Polypharmacy]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="650" y="0" width="100" height="30" uuid="23b5912c-f48f-420e-8118-a022cba2be43"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Polyprovider]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="750" y="0" width="150" height="30" uuid="210c16b8-9617-42e4-9b10-7bce5610c3f9"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Therapeutic Complexity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="900" y="0" width="50" height="30" uuid="f0a03068-8456-4dcc-b44f-88a61f5c8504"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1050" y="0" width="170" height="30" uuid="5f0d3aa4-4f2d-402a-b8df-648f63951f81"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Controlled Substance Drugs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1220" y="0" width="130" height="30" uuid="4e5f4f2e-e1de-4279-9845-7a5e59c75315">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Emergent Condition]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1350" y="0" width="100" height="30" uuid="00e8c049-d2a9-4205-9c0f-d0a4e0cf5c32"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EC Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="950" y="0" width="100" height="30" uuid="8c31e9da-7c1f-4d7c-a879-6929d6da6128"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[High Risk Drugs]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="adbfa3ef-f1f6-4406-84f2-3064eab00dc5"/>
+				<textFieldExpression><![CDATA[$F{MonthYear}.substring(0,2) + "-" + $F{MonthYear}.substring(2,6)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="30" uuid="2a71b8da-e5d5-459f-9dd2-6c374ca004d9"/>
+				<textFieldExpression><![CDATA[$F{BeneficiaryNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="140" height="30" uuid="0d43c5bc-8886-40e0-9ea0-5f120da9804e"/>
+				<textFieldExpression><![CDATA[$F{PredominentProviderNPI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="100" height="30" uuid="6b3c419e-a411-40e1-b849-c3bca692b502"/>
+				<textFieldExpression><![CDATA[$F{PredominentProviderSpecialtyName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="0" width="110" height="30" uuid="bdb3b4d7-6987-4e4e-a350-e5c47b629d4c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CoordinationRisk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="550" y="0" width="100" height="30" uuid="f5e46085-1c0a-4491-b6a9-494541974ce3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Polypharm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="650" y="0" width="100" height="30" uuid="357e92e4-9bc7-4043-a5b7-ceef043d1e13"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Polyprescriber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="750" y="0" width="150" height="30" uuid="45bd8576-dbc8-49f0-ae43-7e1870ab0903"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{TheraputicComplexity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="900" y="0" width="50" height="30" uuid="7e695796-e072-4524-9c36-dcd191d36b5a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{MERLevel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="950" y="0" width="100" height="30" uuid="6dd6a169-55c9-4d73-a5ed-b813645e9ad5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{HrmStatus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1050" y="0" width="170" height="30" uuid="b02053e4-c865-4307-afca-0cbdea53398b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Field_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1220" y="0" width="80" height="30" uuid="81bfc3ba-07ac-4640-9be0-d52a1f89899c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Field_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1300" y="0" width="220" height="30" uuid="bf6049cc-0857-4b29-b962-e0f4b30b89d6"/>
+				<textFieldExpression><![CDATA[$F{AlertDescription}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
