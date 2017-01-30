@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-01-11T09:47:15 -->
+<!-- 2017-01-30T09:59:25 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CoordinationRiskPrioritization" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Key" uuid="72a85a3c-e721-45fb-95cf-948f9e0350ca">
 	<property name="net.sf.jasperreports.data.adapter" value="repo:/reports/PatientDatabase.xml"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
-	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
-	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.url" value="http://presciencejrs.cloudapp.net/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin|"/>
 	<property name="ireport.jasperserver.reportUnit" value="/reports/CoordinationRiskPrioritization"/>
 	<property name="ireport.jasperserver.report.resource" value="/reports/CoordinationRiskPrioritization_files/main_jrxml"/>
 	<parameter name="RequestId" class="java.lang.String"/>
@@ -681,7 +681,7 @@
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textElement>
-					<font size="8"/>
+					<font size="9"/>
 					<paragraph lineSpacingSize="0.0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{EmergentType}]]></textFieldExpression>
@@ -691,7 +691,7 @@
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textElement>
-					<font size="8"/>
+					<font size="9"/>
 					<paragraph lineSpacingSize="0.0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ConditionName}]]></textFieldExpression>
@@ -701,7 +701,7 @@
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textElement>
-					<font size="8"/>
+					<font size="9"/>
 					<paragraph lineSpacingSize="0.0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ConditionImpact}]]></textFieldExpression>
