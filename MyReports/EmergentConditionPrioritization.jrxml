@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-01-30T10:42:44 -->
+<!-- 2017-02-01T16:16:51 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EmergentConditionPrioritization" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Key" uuid="72a85a3c-e721-45fb-95cf-948f9e0350ca">
 	<property name="net.sf.jasperreports.data.adapter" value="repo:/reports/PatientDatabase.xml"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
@@ -9,6 +9,9 @@
 	<property name="ireport.jasperserver.reportUnit" value="/reports/EmergentConditionPrioritization"/>
 	<property name="ireport.jasperserver.report.resource" value="/reports/EmergentConditionPrioritization_files/main_jrxml"/>
 	<parameter name="RequestId" class="java.lang.String"/>
+	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["r" + $P{RequestId}.replaceAll("-","")]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT  MAX(pd.[RequestId]) RequestId
       ,MAX(pd.[BeneficiaryNumber]) BeneficiaryNumber
@@ -33,9 +36,8 @@
       ,pd.[ConditionName] ConditionName
       ,pd.[ConditionImpact] ConditionImpact
       ,pd.[EmergentType] EmergentType
-  FROM [dbo].[EmergentConditionPrioritization] pd WITH (NOLOCK)
-  WHERE pd.[RequestId] = $P{RequestId}
-  AND LEN(LTRIM(RTRIM(pd.[EmergentType]))) > 1
+  FROM [dbo].[$P!{TbName}] pd 
+  WHERE LEN(LTRIM(RTRIM(pd.[EmergentType]))) > 1
   GROUP BY pd.[Id] , pd.ConditionName, pd.ConditionImpact, pd.EmergentType
   order by pd.Id;]]>
 	</queryString>
