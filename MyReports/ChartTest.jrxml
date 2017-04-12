@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-04-11T13:04:49 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ChartTest" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4c052314-543c-4cb2-bda7-e58860d79f68">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DevJasperReportsServer-1\reports\PatientDatabase.xml"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT  [StoreId]
+      ,MAX([Kitchen]) AS Kitchen
+      ,MAX([Bathroom]) AS Bathroom
+      ,MAX([Location]) AS Location
+      ,MAX([Employees]) AS Employees
+      ,MAX([Revenue]) AS Revenue
+  FROM [dbo].[CHARTTEST]
+  GROUP BY [StoreId]]]>
+	</queryString>
+	<field name="StoreId" class="java.lang.String"/>
+	<field name="Kitchen" class="java.lang.Integer"/>
+	<field name="Bathroom" class="java.lang.Integer"/>
+	<field name="Location" class="java.lang.String"/>
+	<field name="Employees" class="java.lang.Integer"/>
+	<field name="Revenue" class="java.math.BigDecimal"/>
+	<group name="StoreId">
+		<groupExpression><![CDATA[$F{StoreId}]]></groupExpression>
+	</group>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{StoreId}]]></groupExpression>
+		<groupHeader>
+			<band height="215">
+				<textField>
+					<reportElement x="180" y="30" width="200" height="20" uuid="d7b99763-8fa7-489f-a21b-397747554556"/>
+					<textFieldExpression><![CDATA[$F{Location}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="180" y="60" width="100" height="20" uuid="c408f962-bf6a-4750-9c17-69b5a5fb0db4"/>
+					<textFieldExpression><![CDATA[$F{Employees}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="180" y="90" width="100" height="20" uuid="f475d12c-7c11-43dc-a176-a31d9e2c6697"/>
+					<textFieldExpression><![CDATA[$F{Revenue}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="30" width="100" height="20" uuid="c550d318-262c-4a02-8f85-76e557b3bcbd"/>
+					<text><![CDATA[Location]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="60" width="100" height="20" uuid="4983f9ee-23f9-42dc-b9d9-d218083afa64"/>
+					<text><![CDATA[Employees]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="90" width="100" height="20" uuid="db5f8402-1784-4b3b-bf44-464941296658"/>
+					<text><![CDATA[Revenue]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="0" y="0" width="560" height="30" forecolor="#FFFFFF" backcolor="#BF4745" uuid="a29b4137-1c40-4acc-b6d4-07876388a267"/>
+				</rectangle>
+				<textField>
+					<reportElement x="207" y="14" width="100" height="16" forecolor="#FFFFFF" uuid="97fe2a26-a1ce-46f7-adb4-f7da9a1e32ea"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{StoreId}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
