@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-04-13T13:52:20 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ImpliedDiagnosis_SR" pageWidth="680" pageHeight="802" columnWidth="660" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="47d6b3dc-5c22-4739-a233-6f689fac219a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
+	<parameter name="Id" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="RequestId" class="java.lang.String"/>
+	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["r" + $P{RequestId}.replaceAll("-","")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+[ConditionName],
+ [DrugName] ,
+[IsBrand],
+[TheraputicClass],
+[IsControlledSubstance],
+[TheraputicIntent],
+[ComplianceIssueText],
+[NewCount],
+[RefillCount]
+FROM OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[$P!{TbName}]),'$.ConditionDrugDetailModel' ) 
+  WITH (
+  			[ConditionName] varchar(255) '$.DrugCondition.ConditionName',
+  		[DrugList] nvarchar(max) AS JSON
+  )
+  CROSS APPLY OPENJSON ([DrugList]) WITH (
+			[DrugName] varchar(255) '$.Drug.DrugName',
+			[IsBrand] bit '$.Drug.IsBrand',
+			[TheraputicClass] varchar(255) '$.Drug.TheraputicClass',
+			[IsControlledSubstance] bit '$.Drug.IsControlledSubstance',
+			[TheraputicIntent] varchar(255) '$.Drug.TheraputicIntent',
+			[ComplianceIssueText] varchar(12) '$.Drug.ComplianceIssueText',
+			[NewCount] INT '$.Drug.NewCount',
+			[RefillCount] INT '$.Drug.RefillCount'
+  )
+  WHERE [DrugName]  IS NOT NULL]]>
+	</queryString>
+	<field name="ConditionName" class="java.lang.String"/>
+	<field name="DrugName" class="java.lang.String"/>
+	<field name="TheraputicClass" class="java.lang.String"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{ConditionName}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="9" y="10" width="368" height="14" uuid="6f724759-5b8e-4ce4-af65-be5046fc9d0b">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{ConditionName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="3" width="75" height="14" uuid="6a65144f-42f8-43e9-ba53-714233b7a21a">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{DrugName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="1" width="223" height="14" uuid="6a65144f-42f8-43e9-ba53-714233b7a21a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{TheraputicClass}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

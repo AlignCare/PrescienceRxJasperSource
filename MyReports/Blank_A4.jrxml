@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-04-13T10:43:07 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="71c9c68f-3009-47c6-88c0-069116b8c062">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+    [BeneficiaryId],
+	[Id],
+	[CustomerName],
+	[CustomerId],
+	[ModelName],
+	[ReportedDateText],
+	[BeneficiaryName] ,
+	[BeneficiaryNumber] ,
+    [MERLevel],
+	[MERLevelDescription],
+	[Polypharm],
+	[Polyprescribe],
+	[TherapeuticComplexity],
+	[Gender],
+	[PredomiantPrescriber] ,
+	[AgeGroup],
+	[Age],
+	[DateOfBirthText] ,
+	[MonthYear],
+	[PredominentProviderNPI] ,
+	[PredominentProviderSpecialtyName],	
+	[PredominentProviderFullName]
+FROM OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]))
+  WITH (
+  
+  	[BeneficiaryId] INT '$.Beneficiary.BeneficiaryId',
+	[Id] varchar(255) '$.Beneficiary.Id',
+	[CustomerName] varchar(255) '$.Beneficiary.CustomerName',
+	[CustomerId] INT '$.Beneficiary.CustomerId',
+	[ModelName] varchar(255) '$.Beneficiary.ModelName',
+	[ReportedDateText] varchar(255) '$.Beneficiary.ReportedDateText',
+	[BeneficiaryName] varchar(255) '$.Beneficiary.BeneficiaryName',
+	[BeneficiaryNumber] varchar(255) '$.Beneficiary.BeneficiaryNumber',
+    [MERLevel]  INT '$.Beneficiary.MERLevel',
+	[MERLevelDescription]  varchar(255) '$.Beneficiary.MERLevelDescription',
+	[Polypharm]   INT '$.Beneficiary.Polypharm',
+	[Polyprescribe]   INT '$.Beneficiary.Polyprescribe',
+	[TherapeuticComplexity]   INT '$.Beneficiary.TherapeuticComplexity',
+	[Gender]  char(1) '$.Beneficiary.Gender',
+	[PredomiantPrescriber]   varchar(255) '$.Beneficiary.PredomiantPrescriber',
+	[AgeGroup]  varchar(255) '$.Beneficiary.AgeGroup',
+	[Age]   INT '$.Beneficiary.Age',
+	[DateOfBirthText] varchar(255) '$.Beneficiary.DateOfBirthText',
+	[MonthYear]   INT '$.Beneficiary.MonthYear',
+	[PredominentProviderNPI] varchar(255) '$.PredominentProvider.NPI',
+	[PredominentProviderSpecialtyName] varchar(255) '$.PredominentProvider.SpecialtyName',	
+	[PredominentProviderFullName] varchar(255) '$.PredominentProvider.FullName'
+  )
+  AS Beneficiaries]]>
+	</queryString>
+	<field name="BeneficiaryId" class="java.lang.Integer"/>
+	<field name="Id" class="java.lang.String"/>
+	<field name="CustomerName" class="java.lang.String"/>
+	<field name="CustomerId" class="java.lang.Integer"/>
+	<field name="ModelName" class="java.lang.String"/>
+	<field name="ReportedDateText" class="java.lang.String"/>
+	<field name="BeneficiaryName" class="java.lang.String"/>
+	<field name="BeneficiaryNumber" class="java.lang.String"/>
+	<field name="MERLevel" class="java.lang.Integer"/>
+	<field name="MERLevelDescription" class="java.lang.String"/>
+	<field name="Polypharm" class="java.lang.Integer"/>
+	<field name="Polyprescribe" class="java.lang.Integer"/>
+	<field name="TherapeuticComplexity" class="java.lang.Integer"/>
+	<field name="Gender" class="java.lang.String"/>
+	<field name="PredomiantPrescriber" class="java.lang.String"/>
+	<field name="AgeGroup" class="java.lang.String"/>
+	<field name="Age" class="java.lang.Integer"/>
+	<field name="DateOfBirthText" class="java.lang.String"/>
+	<field name="MonthYear" class="java.lang.Integer"/>
+	<field name="PredominentProviderNPI" class="java.lang.String"/>
+	<field name="PredominentProviderSpecialtyName" class="java.lang.String"/>
+	<field name="PredominentProviderFullName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
