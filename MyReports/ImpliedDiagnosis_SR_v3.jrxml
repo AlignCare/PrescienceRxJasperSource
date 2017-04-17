@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-17T16:03:24 -->
+<!-- 2017-04-17T16:37:21 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ImpliedDiagnosis_SR" pageWidth="680" pageHeight="802" columnWidth="660" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="47d6b3dc-5c22-4739-a233-6f689fac219a">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
 	<property name="ireport.jasperserver.url" value="http://presciencejrs.cloudapp.net/jasperserver/"/>
 	<property name="ireport.jasperserver.user" value="jasperadmin"/>
-	<property name="ireport.jasperserver.reportUnit" value="/reports/ImpliedDiagnosis_SR"/>
-	<property name="ireport.jasperserver.report.resource" value="/reports/ImpliedDiagnosis_SR_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/ImpliedDiagnosis_SR_v3"/>
 	<parameter name="Id" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="RequestId" class="java.lang.String"/>
 	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
@@ -36,28 +35,45 @@ FROM OPENJSON((SELECT[JSONREC]
 	<columnHeader>
 		<band height="49">
 			<rectangle>
-				<reportElement x="0" y="4" width="679" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="57d39b3a-32ba-4429-81f9-b40cbc774cd2"/>
+				<reportElement x="10" y="4" width="659" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="57d39b3a-32ba-4429-81f9-b40cbc774cd2"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="10" y="7" width="219" height="16" forecolor="#FFFFFF" uuid="f401792d-ea2d-4a93-95db-4b4e89b12512"/>
+				<reportElement x="15" y="7" width="219" height="16" forecolor="#FFFFFF" uuid="f401792d-ea2d-4a93-95db-4b4e89b12512"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Implied Diagnosis (RxMG)]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="1" y="27" width="679" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="147b78bd-e1a7-4c47-b4af-9f6c3ddad344"/>
+				<reportElement x="10" y="27" width="659" height="16" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="147b78bd-e1a7-4c47-b4af-9f6c3ddad344">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="1" y="28" width="100" height="16" uuid="35946290-def8-452b-b0e0-1fdc06ceab6d"/>
+				<reportElement x="10" y="28" width="100" height="14" uuid="35946290-def8-452b-b0e0-1fdc06ceab6d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[RxMG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="350" y="28" width="80" height="18" uuid="8a303812-de97-4865-b94a-fc809ef44242"/>
+				<reportElement x="353" y="28" width="80" height="14" uuid="8a303812-de97-4865-b94a-fc809ef44242">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Impact on Risk]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="445" y="27" width="184" height="18" uuid="090cf9eb-cb5c-43de-8217-bd355ceb43d7"/>
+				<reportElement x="445" y="27" width="184" height="14" uuid="090cf9eb-cb5c-43de-8217-bd355ceb43d7">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Emergent Condition]]></text>
 			</staticText>
 		</band>
@@ -65,14 +81,14 @@ FROM OPENJSON((SELECT[JSONREC]
 	<detail>
 		<band height="17" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="350" height="14" uuid="6f724759-5b8e-4ce4-af65-be5046fc9d0b">
+				<reportElement x="10" y="0" width="340" height="14" uuid="6f724759-5b8e-4ce4-af65-be5046fc9d0b">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{ConditionName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="350" y="0" width="75" height="14" uuid="6a65144f-42f8-43e9-ba53-714233b7a21a">
+				<reportElement x="360" y="0" width="75" height="14" uuid="6a65144f-42f8-43e9-ba53-714233b7a21a">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
@@ -80,7 +96,7 @@ FROM OPENJSON((SELECT[JSONREC]
 				<textFieldExpression><![CDATA[$F{ConditionImpact}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="445" y="0" width="228" height="14" uuid="6a65144f-42f8-43e9-ba53-714233b7a21a">
+				<reportElement x="445" y="0" width="224" height="14" uuid="6a65144f-42f8-43e9-ba53-714233b7a21a">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement textAlignment="Left"/>

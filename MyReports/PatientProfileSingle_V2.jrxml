@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-17T14:55:14 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PatientProfile" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Key" uuid="72a85a3c-e721-45fb-95cf-948f9e0350ca">
+<!-- 2017-04-17T17:29:25 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PatientProfile" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="10" whenResourceMissingType="Key" uuid="72a85a3c-e721-45fb-95cf-948f9e0350ca">
 	<property name="net.sf.jasperreports.data.adapter" value="repo:/reports/PatientDatabase.xml"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
 	<property name="ireport.jasperserver.url" value="http://presciencejrs.cloudapp.net/jasperserver/"/>
 	<property name="ireport.jasperserver.user" value="jasperadmin"/>
-	<property name="ireport.jasperserver.reportUnit" value="/reports/PatientProfileSingle"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/PatientProfileSingle_V2"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/PatientProfileSingle_V2_files/main_jrxml"/>
 	<parameter name="RequestId" class="java.lang.String"/>
 	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["r" + $P{RequestId}.replaceAll("-","")]]></defaultValueExpression>
@@ -321,7 +322,8 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="761">
+		<band height="492">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<frame>
 				<reportElement positionType="Float" mode="Opaque" x="0" y="23" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="1c1985b9-a398-42c8-a86d-ab81d6a8911c"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -1096,23 +1098,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="488" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="013239ac-fed4-46bd-af3d-4e71117dad73"/>
-				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
-					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
-				</box>
-			</frame>
-			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="502" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="347230f6-dbff-4775-9d38-1f4db01e7adc"/>
-				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
-					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
-					<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#DDDDDD"/>
-					<leftPen lineWidth="0.3" lineStyle="Solid" lineColor="#DDDDDD"/>
-					<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#DDDDDD"/>
-					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#DDDDDD"/>
-				</box>
-			</frame>
-			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="275" y="376" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="ee4ea5f1-3cee-4c6b-85de-53841e30670c"/>
+				<reportElement positionType="Float" mode="Opaque" x="275" y="376" width="274" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="ee4ea5f1-3cee-4c6b-85de-53841e30670c"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1133,19 +1119,19 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="275" y="390" width="260" height="42" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="a6589803-909e-4778-ac55-544912f95155"/>
+				<reportElement positionType="Float" mode="Opaque" x="275" y="390" width="274" height="42" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="a6589803-909e-4778-ac55-544912f95155"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<subreport overflowType="Stretch">
-					<reportElement x="5" y="1" width="254" height="30" uuid="2d452a08-a887-4a94-a24d-d1fcc00410e3">
+					<reportElement x="5" y="1" width="260" height="27" uuid="2d452a08-a887-4a94-a24d-d1fcc00410e3">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<subreportParameter name="RequestId">
 						<subreportParameterExpression><![CDATA[$P{RequestId}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression><![CDATA["PatientAlerts_SR.jrxml"]]></subreportExpression>
+					<subreportExpression><![CDATA["PatientAlerts_SR_v3.jrxml"]]></subreportExpression>
 				</subreport>
 			</frame>
 			<rectangle>
@@ -1513,41 +1499,28 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 			</frame>
+		</band>
+		<band height="38">
+			<subreport isUsingCache="false">
+				<reportElement x="1" y="2" width="549" height="28" uuid="763bc8e5-ff08-4e8a-82e8-32828e2bb2d2"/>
+				<subreportParameter name="RequestId">
+					<subreportParameterExpression><![CDATA[$P{RequestId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["ImpliedDiagnosis_SR_v3.jrxml"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
 			<frame>
-				<reportElement positionType="Float" stretchType="ContainerBottom" x="1" y="510" width="550" height="110" uuid="3c40a394-30cb-4503-bc4a-b2e1930d1420"/>
-				<rectangle>
-					<reportElement x="0" y="0" width="550" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="92fc635f-9b3f-4a8e-967b-598fc18b87c5"/>
-				</rectangle>
-				<staticText>
-					<reportElement x="6" y="0" width="127" height="16" forecolor="#FFFFFF" uuid="bed84b10-5b9d-4750-8e88-fd9d150eb52a"/>
-					<textElement>
-						<font isBold="true"/>
-					</textElement>
-					<text><![CDATA[Implied Diagnosis (RxMG)]]></text>
-				</staticText>
-				<subreport isUsingCache="false" runToBottom="true" overflowType="Stretch">
-					<reportElement stretchType="ContainerBottom" x="1" y="30" width="538" height="30" uuid="908f14d9-97ec-49a0-a747-1051d03dbd2b">
-						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					</reportElement>
+				<reportElement x="0" y="0" width="550" height="40" uuid="3474e631-de1c-49eb-8349-76ef976a8cd2"/>
+				<subreport isUsingCache="false">
+					<reportElement x="1" y="4" width="548" height="25" uuid="6a5593bf-fb8b-41d4-8c79-1a28efc98098"/>
 					<subreportParameter name="RequestId">
 						<subreportParameterExpression><![CDATA[$P{RequestId}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression><![CDATA["ImpliedDiagnosis_SR.jrxml"]]></subreportExpression>
+					<subreportExpression><![CDATA["DrugConsumption_SR_v3.jrxml"]]></subreportExpression>
 				</subreport>
-			</frame>
-			<frame>
-				<reportElement positionType="Float" stretchType="ContainerBottom" x="1" y="625" width="550" height="101" uuid="01f0541b-c93b-437b-b32d-bca174058806"/>
-				<rectangle>
-					<reportElement x="-2" y="8" width="550" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="23d000d1-5665-4d65-87ab-47d6a128bd31"/>
-				</rectangle>
-				<staticText>
-					<reportElement x="8" y="10" width="127" height="16" forecolor="#FFFFFF" uuid="c2d0adad-a6c0-46dd-96a8-28d739c5864c"/>
-					<textElement>
-						<font isBold="true"/>
-					</textElement>
-					<text><![CDATA[Drug Consumption Detail]]></text>
-				</staticText>
 			</frame>
 		</band>
 	</detail>

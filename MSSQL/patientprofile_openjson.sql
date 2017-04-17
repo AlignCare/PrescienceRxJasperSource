@@ -37,7 +37,16 @@ SELECT
 	[DifferentPrescribersInNetwork],
 	[DifferentPrescribersOutOfNetwork],
 	[UniqueDrugsBrand],
-	[UniqueDrugsGeneric]
+	[UniqueDrugsGeneric],
+	[ConcurrentDrugsPast90Days],
+	[AbusePotentialDrugsHigh],
+    [AbusePotentialDrugsMedium],
+    [AbusePotentialDrugsLow],
+	[RiskProfileMedicalExpense]
+	,[RiskProfileCoordinationRisk]
+	,[DrugConsumptionPatternsPolypharmacy]
+	,[DrugConsumptionPatternsPolyprescriber]
+	,[DrugConsumptionPatternsTheraputicComplexity]
 FROM OPENJSON((SELECT[JSONREC]
   FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]))
   WITH (
@@ -87,6 +96,13 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 		[ConcurrentDrugsAllDrugs] nvarchar(max) '$.data[0]' 
   ) as ConcurrentDrugs
 
+  CROSS APPLY OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.ConcurrentDrugs' ) 
+  WITH (
+  		[name] varchar(255) '$.name',
+		[ConcurrentDrugsPast90Days] nvarchar(max) '$.data[0]' 
+  ) as ConcurrentDrugsPast90Days
+
 CROSS APPLY OPENJSON((SELECT[JSONREC]
   FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.DifferentPrescribers' ) 
   WITH (
@@ -115,95 +131,76 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 		[UniqueDrugsGeneric] nvarchar(max) '$.data[0]' 
   ) as UniqueDrugsGeneric
 
+  CROSS APPLY OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.AbusePotentialDrugs' ) 
+  WITH (
+  		[name] varchar(255) '$.name',
+		[AbusePotentialDrugsHigh] nvarchar(max) '$.data[0]' 
+  ) as AbusePotentialDrugsHigh
 
+  CROSS APPLY OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.AbusePotentialDrugs' ) 
+  WITH (
+  		[name] varchar(255) '$.name',
+		[AbusePotentialDrugsMedium] nvarchar(max) '$.data[0]' 
+  ) as AbusePotentialDrugsMedium
+
+  CROSS APPLY OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.AbusePotentialDrugs' ) 
+  WITH (
+  		[name] varchar(255) '$.name',
+		[AbusePotentialDrugsLow] nvarchar(max) '$.data[0]' 
+  ) as AbusePotentialDrugsLow
+
+  CROSS APPLY OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.RiskProfile' ) 
+  WITH (
+  		[AnalyticName] varchar(255) '$.AnalyticName',
+		[RiskProfileMedicalExpense] INT '$.LevelValue' 
+  ) as RiskProfileMedicalExpense
+
+
+  CROSS APPLY OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.RiskProfile' ) 
+  WITH (
+  		[AnalyticName] varchar(255) '$.AnalyticName',
+		[RiskProfileCoordinationRisk] INT '$.LevelValue' 
+  ) as RiskProfileCoordinationRisk
+
+    CROSS APPLY OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.DrugConsumptionPatterns' ) 
+  WITH (
+  		[AnalyticName] varchar(255) '$.AnalyticName',
+		[DrugConsumptionPatternsPolypharmacy] INT '$.LevelValue' 
+  ) as DrugConsumptionPatternsPolypharmacy
+
+      CROSS APPLY OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.DrugConsumptionPatterns' ) 
+  WITH (
+  		[AnalyticName] varchar(255) '$.AnalyticName',
+		[DrugConsumptionPatternsPolyprescriber] INT '$.LevelValue' 
+  ) as DrugConsumptionPatternsPolyprescriber
+
+      CROSS APPLY OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.DrugConsumptionPatterns' ) 
+  WITH (
+  		[AnalyticName] varchar(255) '$.AnalyticName',
+		[DrugConsumptionPatternsTheraputicComplexity] INT '$.LevelValue' 
+  ) as DrugConsumptionPatternsTheraputicComplexity
+
+  
  WHERE 
   ConcurrentDrugs.name = 'All Drugs' AND
+  ConcurrentDrugsPast90Days.name = 'Past 90 Days' AND
   DifferentPrescribers.name = 'In Network' AND 
   DifferentPrescribersOutOfNetwork.name = 'Out Of Network' AND 
   UniqueDrugsBrand.name = 'Brand' AND 
-  UniqueDrugsGeneric.name = 'Generic'
-
-  SELECT [AlertDescription],
-  [AlertLevelName]
-FROM OPENJSON((SELECT[JSONREC]
-  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.PatientAlerts' )
-  WITH (
-  		[AlertDescription] varchar(255) '$.AlertDescription',
-		[AlertLevelName] varchar(255) '$.AlertLevelName'
-  )
-
-
-    SELECT [name],
-  [data]
-FROM OPENJSON((SELECT[JSONREC]
-  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.ConcurrentDrugs' ) 
-  WITH (
-  		[name] varchar(255) '$.name',
-		[data] nvarchar(max) '$.data[0]' 
-  )
- WHERE name = 'All Drugs'
-
-
-   SELECT [ConditionName],
-  [ConditionImpact],
-  [EmergentType]
-FROM OPENJSON((SELECT[JSONREC]
-  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.DrugConditions' )
-  WITH (
-  		[ConditionName] varchar(255) '$.ConditionName',
-		[ConditionImpact] varchar(255) '$.ConditionImpact',
-		[EmergentType] varchar(255) '$.EmergentType'
-  )
-
-
-
-     SELECT [ConditionName],
-  [ConditionImpact],
-  [EmergentType]
-FROM OPENJSON((SELECT[JSONREC]
-  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.DrugConditions' )
-  WITH (
-  		[ConditionName] varchar(255) '$.ConditionName',
-		[ConditionImpact] varchar(255) '$.ConditionImpact',
-		[EmergentType] varchar(255) '$.EmergentType'
-  )
-
-
-
-       SELECT [ConditionName]
-FROM OPENJSON((SELECT[JSONREC]
-  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.ConditionDrugDetailModel' )
-  WITH (
-  		[ConditionName] varchar(255) '$.DrugCondition.ConditionName'
-  )
-
-
-
-SELECT
-[ConditionName],
- [DrugName] ,
-[IsBrand],
-[TheraputicClass],
-[IsControlledSubstance],
-[TheraputicIntent],
-[ComplianceIssueText],
-[NewCount],
-[RefillCount]
-FROM OPENJSON((SELECT[JSONREC]
-  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.ConditionDrugDetailModel' ) 
-  WITH (
-  			[ConditionName] varchar(255) '$.DrugCondition.ConditionName',
-  		[DrugList] nvarchar(max) AS JSON
-  )
-  CROSS APPLY OPENJSON ([DrugList]) WITH (
-			[DrugName] varchar(255) '$.Drug.DrugName',
-			[IsBrand] bit '$.Drug.IsBrand',
-			[TheraputicClass] varchar(255) '$.Drug.TheraputicClass',
-			[IsControlledSubstance] bit '$.Drug.IsControlledSubstance',
-			[TheraputicIntent] varchar(255) '$.Drug.TheraputicIntent',
-			[ComplianceIssueText] varchar(12) '$.Drug.ComplianceIssueText',
-			[NewCount] INT '$.Drug.NewCount',
-			[RefillCount] INT '$.Drug.RefillCount'
-  )
-  WHERE [DrugName]  IS NOT NULL
-
+  UniqueDrugsGeneric.name = 'Generic' AND
+  AbusePotentialDrugsHigh.name = 'High' AND 
+  AbusePotentialDrugsMedium.name = 'Medium' AND 
+  AbusePotentialDrugsLow.name = 'Low' AND 
+  RiskProfileMedicalExpense.AnalyticName = 'Medical Expense Risk' 
+  AND RiskProfileCoordinationRisk.AnalyticName = 'Coordination Risk'
+  AND DrugConsumptionPatternsPolypharmacy.AnalyticName = 'Polypharmacy'
+  AND DrugConsumptionPatternsPolyprescriber.AnalyticName = 'Polyprescriber'
+  AND DrugConsumptionPatternsTheraputicComplexity.AnalyticName = 'Theraputic Complexity'

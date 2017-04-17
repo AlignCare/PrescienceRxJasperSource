@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-17T14:43:37 -->
+<!-- 2017-04-17T15:39:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ImpliedDiagnosis_SR" pageWidth="680" pageHeight="802" columnWidth="660" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="47d6b3dc-5c22-4739-a233-6f689fac219a">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
 	<property name="ireport.jasperserver.url" value="http://presciencejrs.cloudapp.net/jasperserver/"/>
 	<property name="ireport.jasperserver.user" value="jasperadmin"/>
-	<property name="ireport.jasperserver.report.resource" value="/reports/DrugConsumption_SR_files/main_jrxml"/>
-	<property name="ireport.jasperserver.reportUnit" value="/reports/DrugConsumption_SR"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/DrugConsumption_SR_v2"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/DrugConsumption_SR_v2_files/main_jrxml"/>
 	<parameter name="Id" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="RequestId" class="java.lang.String"/>
 	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
@@ -76,6 +76,23 @@ FROM OPENJSON((SELECT[JSONREC]
 	<title>
 		<band splitType="Stretch"/>
 	</title>
+	<pageHeader>
+		<band height="50">
+			<frame>
+				<reportElement x="15" y="12" width="645" height="28" uuid="755c964a-f2da-4114-82d1-8f0a02ee36ec"/>
+				<rectangle>
+					<reportElement x="0" y="8" width="640" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="d585b789-f9ff-402c-b648-98452f7fb510"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="9" y="12" width="100" height="16" forecolor="#FFFFFF" uuid="c008f9bc-1d61-45eb-ab16-44b9ab33b365"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Risk Profile]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
 	<detail>
 		<band height="108">
 			<frame>
