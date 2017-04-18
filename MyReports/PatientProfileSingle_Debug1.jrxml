@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-19T18:10:35 -->
+<!-- 2017-04-19T18:08:18 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PatientProfile" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="10" whenResourceMissingType="Key" uuid="72a85a3c-e721-45fb-95cf-948f9e0350ca">
 	<property name="net.sf.jasperreports.data.adapter" value="repo:/reports/PatientDatabase.xml"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
 	<property name="ireport.jasperserver.url" value="http://presciencejrs.cloudapp.net/jasperserver/"/>
 	<property name="ireport.jasperserver.user" value="jasperadmin"/>
-	<property name="ireport.jasperserver.reportUnit" value="/reports/PatientProfileSingle"/>
-	<property name="ireport.jasperserver.report.resource" value="/reports/PatientProfileSingle_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/PatientProfileSingle_Debug1"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/PatientProfileSingle_Debug1_files/main_jrxml"/>
 	<parameter name="RequestId" class="java.lang.String"/>
 	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["r" + $P{RequestId}.replaceAll("-","")]]></defaultValueExpression>
@@ -954,7 +954,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="1" y="0" width="140" height="14" forecolor="#333333" uuid="e328ec37-09e3-447c-850d-618249821ea4">
+					<reportElement x="1" y="0" width="129" height="14" forecolor="#333333" uuid="e328ec37-09e3-447c-850d-618249821ea4">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -969,7 +969,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Medical Expense Risk Level]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="140" y="1" width="117" height="13" uuid="c721a190-12ed-433b-9b9b-910dd65e62c8">
+					<reportElement x="140" y="0" width="116" height="13" uuid="c721a190-12ed-433b-9b9b-910dd65e62c8">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1006,7 +1006,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Coordination Risk]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="140" y="1" width="117" height="13" uuid="a3e31aae-b1fe-43ca-b161-bca8aa54e372">
+					<reportElement x="140" y="0" width="117" height="13" uuid="a3e31aae-b1fe-43ca-b161-bca8aa54e372">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1022,7 +1022,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="140" height="14" forecolor="#333333" uuid="83220c77-bdba-407a-a61f-82d0ff1ce352">
+					<reportElement x="0" y="0" width="130" height="14" forecolor="#333333" uuid="83220c77-bdba-407a-a61f-82d0ff1ce352">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement>
@@ -1031,7 +1031,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Polypharmacy]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="140" y="1" width="117" height="13" uuid="d3ecffdc-8277-45ff-868d-7b47978cd71c">
+					<reportElement x="140" y="0" width="117" height="13" uuid="d3ecffdc-8277-45ff-868d-7b47978cd71c">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1047,7 +1047,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="140" height="14" forecolor="#333333" uuid="500779fb-e48b-4101-8287-5924a731f6b2">
+					<reportElement x="0" y="0" width="130" height="14" forecolor="#333333" uuid="500779fb-e48b-4101-8287-5924a731f6b2">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -1062,7 +1062,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Therapeutic Complexity]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="140" y="1" width="117" height="13" uuid="ff5e499e-209a-4015-9a70-7f3de388f8cd">
+					<reportElement x="140" y="0" width="117" height="13" uuid="ff5e499e-209a-4015-9a70-7f3de388f8cd">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1078,7 +1078,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="140" height="14" forecolor="#333333" uuid="20fb9695-dd36-4a6f-bec2-202a7737dec8">
+					<reportElement x="0" y="0" width="130" height="14" forecolor="#333333" uuid="20fb9695-dd36-4a6f-bec2-202a7737dec8">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -1093,7 +1093,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Polyprescriber]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="140" y="1" width="117" height="13" uuid="de6102e5-fcc5-4330-baa5-6b6a53ceeefe">
+					<reportElement x="140" y="0" width="117" height="13" uuid="de6102e5-fcc5-4330-baa5-6b6a53ceeefe">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1523,7 +1523,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Controlled Substance Low Count]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="170" y="0" width="83" height="13" uuid="8c4675e6-a066-4e81-a259-89b355c187cf">
+					<reportElement x="171" y="0" width="83" height="13" uuid="8c4675e6-a066-4e81-a259-89b355c187cf">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>

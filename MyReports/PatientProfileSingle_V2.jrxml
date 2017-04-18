@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-17T17:29:25 -->
+<!-- 2017-04-18T17:37:01 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PatientProfile" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="10" whenResourceMissingType="Key" uuid="72a85a3c-e721-45fb-95cf-948f9e0350ca">
 	<property name="net.sf.jasperreports.data.adapter" value="repo:/reports/PatientDatabase.xml"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
 	<property name="ireport.jasperserver.url" value="http://presciencejrs.cloudapp.net/jasperserver/"/>
 	<property name="ireport.jasperserver.user" value="jasperadmin"/>
 	<property name="ireport.jasperserver.reportUnit" value="/reports/PatientProfileSingle_V2"/>
-	<property name="ireport.jasperserver.report.resource" value="/reports/PatientProfileSingle_V2_files/main_jrxml"/>
 	<parameter name="RequestId" class="java.lang.String"/>
 	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["r" + $P{RequestId}.replaceAll("-","")]]></defaultValueExpression>
@@ -32,7 +31,7 @@
 	[AgeGroup],
 	[Age],
 	[DateOfBirthText] ,
-	[MonthYear],
+	DateName( month , DateAdd( month , CAST(LEFT([MonthYear], 2) AS INT) , -1 )) + ' ' + RIGHT([MonthYear],4) MonthYear_Desc,
 	[ConcurrentDrugsAllDrugs],
 	[COA],
 	[ZipCode],
@@ -237,7 +236,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 	<field name="AgeGroup" class="java.lang.String"/>
 	<field name="Age" class="java.lang.Integer"/>
 	<field name="DateOfBirthText" class="java.lang.String"/>
-	<field name="MonthYear" class="java.lang.Integer"/>
+	<field name="MonthYear_Desc" class="java.lang.String"/>
 	<field name="PredominentProviderNPI" class="java.lang.String"/>
 	<field name="PredominentProviderSpecialtyName" class="java.lang.String"/>
 	<field name="PredominentProviderFullName" class="java.lang.String"/>
@@ -302,7 +301,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{MonthYear}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{MonthYear_Desc}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="11" width="50" height="30" uuid="d9d1e9ef-a50b-43cf-8914-8497df9f19cc">
@@ -330,7 +329,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="14" forecolor="#333333" uuid="74f1bbef-f658-415a-8111-2dbc8762ef42">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="74f1bbef-f658-415a-8111-2dbc8762ef42">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -345,7 +344,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Organization]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="80" y="1" width="190" height="13" uuid="c924c060-9990-4547-878c-8031b199a757">
+					<reportElement x="90" y="1" width="180" height="13" uuid="c924c060-9990-4547-878c-8031b199a757">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -361,7 +360,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="14" forecolor="#333333" uuid="046ad643-1c81-407f-a0f7-91210578e76f">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="046ad643-1c81-407f-a0f7-91210578e76f">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -376,7 +375,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Reported]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="80" y="1" width="190" height="13" uuid="1d91176f-2e29-4db5-8a85-4cec87e792d4">
+					<reportElement x="90" y="1" width="180" height="13" uuid="1d91176f-2e29-4db5-8a85-4cec87e792d4">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -392,7 +391,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="14" forecolor="#333333" uuid="8b609060-fc2c-4176-badc-01526eb0029b">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="8b609060-fc2c-4176-badc-01526eb0029b">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement>
@@ -401,7 +400,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Sex]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="80" y="1" width="190" height="13" uuid="1b6749d9-e209-4fb8-9833-059038b4e859">
+					<reportElement x="90" y="1" width="180" height="13" uuid="1b6749d9-e209-4fb8-9833-059038b4e859">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -417,7 +416,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="14" forecolor="#333333" uuid="4aa95a33-4c51-4cbe-84e9-33b84bef118e">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="4aa95a33-4c51-4cbe-84e9-33b84bef118e">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -432,7 +431,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Patient Id]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="80" y="0" width="190" height="13" uuid="1ff9ea91-15c9-4d0c-ae84-9eccdb7389f5">
+					<reportElement x="90" y="1" width="180" height="13" uuid="1ff9ea91-15c9-4d0c-ae84-9eccdb7389f5">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -448,7 +447,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="14" forecolor="#333333" uuid="a6bbf956-b1b9-4835-a149-feb21502398d">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="a6bbf956-b1b9-4835-a149-feb21502398d">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement>
@@ -457,7 +456,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Age]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="80" y="1" width="190" height="13" uuid="3e3bf9b3-5450-4c1d-91cd-f457494738b0">
+					<reportElement x="90" y="0" width="180" height="13" uuid="3e3bf9b3-5450-4c1d-91cd-f457494738b0">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -473,7 +472,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="14" forecolor="#333333" uuid="8fb5be6f-4a59-4f2d-8a56-9705e93c6b42">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="8fb5be6f-4a59-4f2d-8a56-9705e93c6b42">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -488,7 +487,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[COA]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="80" y="1" width="190" height="13" uuid="c612b3d7-9109-42ea-a56a-a4b9d67399a6">
+					<reportElement x="90" y="0" width="180" height="13" uuid="c612b3d7-9109-42ea-a56a-a4b9d67399a6">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -504,7 +503,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="14" forecolor="#333333" uuid="8a735410-e589-44df-b450-086b370acc9c">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="8a735410-e589-44df-b450-086b370acc9c">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -519,7 +518,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Age Group]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="80" y="0" width="190" height="13" uuid="9a462f4d-8fbb-4151-8c1f-4d0773101c15">
+					<reportElement x="90" y="0" width="180" height="13" uuid="9a462f4d-8fbb-4151-8c1f-4d0773101c15">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -535,7 +534,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="14" forecolor="#333333" uuid="ffa300ad-8675-41f1-9e1c-c786ce2f3f65">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="ffa300ad-8675-41f1-9e1c-c786ce2f3f65">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement>
@@ -544,7 +543,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[DOB]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="80" y="0" width="190" height="13" uuid="a6983f82-5a54-4745-9a08-c91de4fc2014">
+					<reportElement x="90" y="0" width="180" height="13" uuid="a6983f82-5a54-4745-9a08-c91de4fc2014">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -560,7 +559,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="14" forecolor="#333333" uuid="843dbb6e-b3b1-46b6-af81-4f8a92654197">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="843dbb6e-b3b1-46b6-af81-4f8a92654197">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -575,7 +574,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Zip Code]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="80" y="1" width="190" height="13" uuid="caa871af-ad1c-4705-9e2c-f5a68a3cdc75">
+					<reportElement x="90" y="1" width="180" height="13" uuid="caa871af-ad1c-4705-9e2c-f5a68a3cdc75">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -595,7 +594,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="14" forecolor="#333333" uuid="a9264073-51a2-4963-92c7-59b353d7de64">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="a9264073-51a2-4963-92c7-59b353d7de64">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -610,7 +609,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Employer Group]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="80" y="1" width="190" height="13" uuid="32827f3b-91d9-46bf-a7a6-207df62c9e3d">
+					<reportElement x="90" y="1" width="180" height="13" uuid="32827f3b-91d9-46bf-a7a6-207df62c9e3d">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -621,12 +620,14 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="23" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="1d5a6465-1ab1-4677-aa30-cfdd5e8621b2"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="23" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="1d5a6465-1ab1-4677-aa30-cfdd5e8621b2">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="120" height="14" forecolor="#333333" uuid="c7db9f54-eeb2-463b-bb74-c7c9110d1a30">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="c7db9f54-eeb2-463b-bb74-c7c9110d1a30">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -641,7 +642,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Product]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="0" width="101" height="13" uuid="9083739a-bd8c-455c-b3a2-5609a906b321">
+					<reportElement x="90" y="0" width="180" height="13" uuid="9083739a-bd8c-455c-b3a2-5609a906b321">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -652,12 +653,14 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="37" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="8f8512b1-d326-4017-b781-06bb7c046d5e"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="37" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="8f8512b1-d326-4017-b781-06bb7c046d5e">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="120" height="14" forecolor="#333333" uuid="56094292-b5e9-4beb-83e2-abe9558bc948">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="56094292-b5e9-4beb-83e2-abe9558bc948">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -672,7 +675,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Region]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="0" width="101" height="13" uuid="9ee9665b-8c85-43e7-9af0-54e10096db07">
+					<reportElement x="90" y="0" width="180" height="13" uuid="9ee9665b-8c85-43e7-9af0-54e10096db07">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -683,12 +686,15 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="65" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="b6026a30-d90f-4e24-9c9e-ce685c565fbe"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="65" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="b6026a30-d90f-4e24-9c9e-ce685c565fbe">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="120" height="14" forecolor="#333333" uuid="5ead32f3-48b7-439e-a149-40001c9bcfe5">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="5ead32f3-48b7-439e-a149-40001c9bcfe5">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement>
@@ -697,7 +703,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Site]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="0" width="101" height="13" uuid="40da6aa1-2624-4892-b360-922b2c962033">
+					<reportElement x="90" y="0" width="180" height="13" uuid="40da6aa1-2624-4892-b360-922b2c962033">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -708,12 +714,14 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="51" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="16799c31-f0d3-4ecd-9235-e9f99700b2ac"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="51" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="16799c31-f0d3-4ecd-9235-e9f99700b2ac">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="120" height="14" forecolor="#333333" uuid="0ca5e578-717c-4e51-8ccf-810cce7cc0d9">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="0ca5e578-717c-4e51-8ccf-810cce7cc0d9">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -728,7 +736,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Group]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="0" width="101" height="13" uuid="46d45e19-7887-42d3-9e11-af42f72bdb2e">
+					<reportElement x="90" y="0" width="180" height="13" uuid="46d45e19-7887-42d3-9e11-af42f72bdb2e">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -739,7 +747,9 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="93" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="128b71e6-5ad8-4416-804f-18126ceb0419"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="93" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="128b71e6-5ad8-4416-804f-18126ceb0419">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -754,12 +764,14 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="121" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="7b66ddc9-6b40-408f-9d10-db500a75f740"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="121" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="7b66ddc9-6b40-408f-9d10-db500a75f740">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="135" height="14" forecolor="#333333" uuid="9a1e0ba6-9b28-4548-aaf7-81de5fbcebba">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="9a1e0ba6-9b28-4548-aaf7-81de5fbcebba">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -774,7 +786,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[NPI]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="0" width="150" height="13" uuid="f58a5c82-bd6d-45c0-b44b-38af09603a05">
+					<reportElement x="90" y="0" width="180" height="13" uuid="f58a5c82-bd6d-45c0-b44b-38af09603a05">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -785,12 +797,14 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="107" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="115091b5-785c-4c7b-97d3-e08c70031f4f"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="107" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="115091b5-785c-4c7b-97d3-e08c70031f4f">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="120" height="14" forecolor="#333333" uuid="73c8dab9-321e-46f8-a40f-b2161e6a0d03">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="73c8dab9-321e-46f8-a40f-b2161e6a0d03">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -805,7 +819,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Physician Name]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="0" width="140" height="13" uuid="6abdd7b4-e16e-41e2-8f47-b71807cd0312">
+					<reportElement x="90" y="0" width="180" height="13" uuid="6abdd7b4-e16e-41e2-8f47-b71807cd0312">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -816,12 +830,14 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="79" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="4f63f08c-317a-4d94-a9b5-d636d920d564"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="79" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="4f63f08c-317a-4d94-a9b5-d636d920d564">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="120" height="14" forecolor="#333333" uuid="b7fe32d3-986a-4cf9-b790-7fb8085a2b43">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="b7fe32d3-986a-4cf9-b790-7fb8085a2b43">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement>
@@ -830,7 +846,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[PCP]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="0" width="101" height="13" uuid="91f6e3c4-693b-4d7a-996f-441e9fcd7665">
+					<reportElement x="90" y="0" width="180" height="13" uuid="91f6e3c4-693b-4d7a-996f-441e9fcd7665">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -841,12 +857,14 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="135" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="4c9eecb6-20fa-4b73-97f0-503ebe2d37da"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="135" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="4c9eecb6-20fa-4b73-97f0-503ebe2d37da">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="120" height="14" forecolor="#333333" uuid="28c6710f-c947-4936-98f2-f33581c56c6c">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="28c6710f-c947-4936-98f2-f33581c56c6c">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -861,7 +879,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Network Participant]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="0" width="101" height="13" uuid="c45cf69f-91f4-4819-b0aa-7090dfeff0e8">
+					<reportElement x="90" y="0" width="180" height="13" uuid="c45cf69f-91f4-4819-b0aa-7090dfeff0e8">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -872,7 +890,9 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="149" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="1acb70fd-dc99-407f-ae44-c6fb0645e976"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="149" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="1acb70fd-dc99-407f-ae44-c6fb0645e976">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 					<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#DDDDDD"/>
@@ -881,7 +901,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="121" height="14" forecolor="#333333" uuid="8cf1aa37-4dfd-4a90-9703-e8dbb934f868">
+					<reportElement x="0" y="0" width="90" height="14" forecolor="#333333" uuid="8cf1aa37-4dfd-4a90-9703-e8dbb934f868">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<box>
@@ -896,7 +916,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Specialty]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="0" width="150" height="13" uuid="2bcb3114-1c80-45fc-b597-4cb24b70c7ca">
+					<reportElement x="90" y="0" width="180" height="13" uuid="2bcb3114-1c80-45fc-b597-4cb24b70c7ca">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -907,7 +927,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="376" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="9f04ea7a-2d9b-4305-bfea-d2d9e25e30cd"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="376" width="269" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="9f04ea7a-2d9b-4305-bfea-d2d9e25e30cd"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -928,7 +948,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="390" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="18d6bd7b-172f-4734-ac80-32fcc0097805"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="390" width="269" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="18d6bd7b-172f-4734-ac80-32fcc0097805"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -948,7 +968,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Medical Expense Risk Level]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="141" y="1" width="117" height="13" uuid="c721a190-12ed-433b-9b9b-910dd65e62c8">
+					<reportElement x="140" y="1" width="117" height="13" uuid="c721a190-12ed-433b-9b9b-910dd65e62c8">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -959,13 +979,13 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="418" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="d1fb0469-7c50-41d4-9eac-09e8db800697"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="418" width="269" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="d1fb0469-7c50-41d4-9eac-09e8db800697"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="404" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="76ae24f9-80e3-4539-84c5-f5121bad83e4"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="404" width="269" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="76ae24f9-80e3-4539-84c5-f5121bad83e4"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -985,7 +1005,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Coordination Risk]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="141" y="1" width="117" height="13" uuid="a3e31aae-b1fe-43ca-b161-bca8aa54e372">
+					<reportElement x="140" y="1" width="117" height="13" uuid="a3e31aae-b1fe-43ca-b161-bca8aa54e372">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -996,7 +1016,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="446" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="df5a6caa-712d-46bc-9624-53d005599f27"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="446" width="269" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="df5a6caa-712d-46bc-9624-53d005599f27"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1010,7 +1030,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Polypharmacy]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="141" y="1" width="117" height="13" uuid="d3ecffdc-8277-45ff-868d-7b47978cd71c">
+					<reportElement x="140" y="1" width="117" height="13" uuid="d3ecffdc-8277-45ff-868d-7b47978cd71c">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1021,7 +1041,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="474" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="05f1f22c-a979-41ce-8498-594f493be88c"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="474" width="269" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="05f1f22c-a979-41ce-8498-594f493be88c"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1041,7 +1061,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Therapeutic Complexity]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="141" y="1" width="117" height="13" uuid="ff5e499e-209a-4015-9a70-7f3de388f8cd">
+					<reportElement x="140" y="1" width="117" height="13" uuid="ff5e499e-209a-4015-9a70-7f3de388f8cd">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1052,7 +1072,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="460" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="f89919b0-c8fb-4341-ba09-5ce05caef5ff"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="460" width="269" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="f89919b0-c8fb-4341-ba09-5ce05caef5ff"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1072,7 +1092,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Polyprescriber]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="141" y="1" width="117" height="13" uuid="de6102e5-fcc5-4330-baa5-6b6a53ceeefe">
+					<reportElement x="140" y="1" width="117" height="13" uuid="de6102e5-fcc5-4330-baa5-6b6a53ceeefe">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1083,7 +1103,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="432" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="d540f82e-0909-42b2-a39b-41199e37fe66"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="432" width="269" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="d540f82e-0909-42b2-a39b-41199e37fe66"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1098,7 +1118,9 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="275" y="376" width="274" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="ee4ea5f1-3cee-4c6b-85de-53841e30670c"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="376" width="275" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="ee4ea5f1-3cee-4c6b-85de-53841e30670c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1119,12 +1141,15 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="275" y="390" width="274" height="42" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="a6589803-909e-4778-ac55-544912f95155"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="390" width="275" height="98" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="a6589803-909e-4778-ac55-544912f95155">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<subreport overflowType="Stretch">
-					<reportElement x="5" y="1" width="260" height="27" uuid="2d452a08-a887-4a94-a24d-d1fcc00410e3">
+					<reportElement x="0" y="1" width="270" height="27" uuid="225d67c1-0131-4e6a-8163-8f3c6dfc2a08">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<subreportParameter name="RequestId">
@@ -1135,17 +1160,17 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</subreport>
 			</frame>
 			<rectangle>
-				<reportElement x="0" y="339" width="550" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="02892c68-e973-4630-b5b9-58e0ee51ad32"/>
+				<reportElement x="0" y="339" width="555" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="02892c68-e973-4630-b5b9-58e0ee51ad32"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="10" y="341" width="100" height="16" forecolor="#FFFFFF" uuid="fe9a9ba4-bf31-417e-9de9-e87d6c873494"/>
+				<reportElement x="10" y="342" width="100" height="16" forecolor="#FFFFFF" uuid="fe9a9ba4-bf31-417e-9de9-e87d6c873494"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Risk Profile]]></text>
 			</staticText>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="209" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="bd12485e-a21a-468a-97f9-45bce6946a2b"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="209" width="268" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="bd12485e-a21a-468a-97f9-45bce6946a2b"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1166,7 +1191,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="223" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="d8b3facb-4de8-4538-a7cc-eaf92895e35b"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="223" width="268" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="d8b3facb-4de8-4538-a7cc-eaf92895e35b"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1186,7 +1211,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[In Network]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="1" width="138" height="13" uuid="c29662af-dc87-4b14-811b-85d4ee00bc7f">
+					<reportElement x="140" y="2" width="128" height="13" uuid="c29662af-dc87-4b14-811b-85d4ee00bc7f">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1197,13 +1222,13 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="251" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="2b471ecd-d159-4419-94b3-69b888a0095d"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="251" width="268" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="2b471ecd-d159-4419-94b3-69b888a0095d"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="237" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="d46db408-b53f-42eb-8ad1-4a1638c427ec"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="237" width="268" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="d46db408-b53f-42eb-8ad1-4a1638c427ec"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1223,7 +1248,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Out of Network]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="1" width="138" height="13" uuid="df908279-33ce-4065-8743-186cefb4667d">
+					<reportElement x="140" y="2" width="128" height="13" uuid="df908279-33ce-4065-8743-186cefb4667d">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1234,7 +1259,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="279" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="7cedd0cb-976c-427e-83b3-7329ed721cab"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="279" width="268" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="7cedd0cb-976c-427e-83b3-7329ed721cab"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1248,7 +1273,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Brand]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="1" width="138" height="13" uuid="585a9a9b-2fda-446d-ae00-8b965c0e311b">
+					<reportElement x="140" y="2" width="128" height="13" uuid="585a9a9b-2fda-446d-ae00-8b965c0e311b">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1259,7 +1284,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="293" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="e74c9702-6550-4c87-bc1d-fdbcbec865d7"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="293" width="268" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="e74c9702-6550-4c87-bc1d-fdbcbec865d7"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1279,7 +1304,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Generic]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="1" width="138" height="13" uuid="797dda5a-b195-417b-b582-9f16cedf2c5c">
+					<reportElement x="140" y="1" width="128" height="13" uuid="797dda5a-b195-417b-b582-9f16cedf2c5c">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1290,7 +1315,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="265" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="a675db98-f589-4022-ab1a-2e0fa0bf984d"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="265" width="268" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="a675db98-f589-4022-ab1a-2e0fa0bf984d"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1305,7 +1330,9 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="209" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="210988da-b792-4940-8c23-711469d93b28"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="209" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="210988da-b792-4940-8c23-711469d93b28">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1326,7 +1353,9 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="223" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="a0f11675-a122-4919-80e4-e321173ab3b8"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="223" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="a0f11675-a122-4919-80e4-e321173ab3b8">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1346,7 +1375,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[All Drugs]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="170" y="0" width="83" height="13" uuid="f434953d-4de9-4bf6-9239-0fe845602f63">
+					<reportElement x="170" y="1" width="83" height="13" uuid="f434953d-4de9-4bf6-9239-0fe845602f63">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1357,13 +1386,17 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="251" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="908d0fcc-5581-4806-9ed0-3d9c8efdc936"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="251" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="908d0fcc-5581-4806-9ed0-3d9c8efdc936">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="237" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="97243de8-bca2-42d9-869c-4a8956fe4ced"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="237" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="97243de8-bca2-42d9-869c-4a8956fe4ced">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1383,7 +1416,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Past 90 Days]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="170" y="0" width="83" height="13" uuid="9462cfb3-a3fc-48c0-a685-0e109846502d">
+					<reportElement x="170" y="1" width="83" height="13" uuid="9462cfb3-a3fc-48c0-a685-0e109846502d">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1394,7 +1427,9 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="279" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="88cf8218-b751-491e-9ff6-fe2df57bba22"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="279" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="88cf8218-b751-491e-9ff6-fe2df57bba22">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1419,7 +1454,9 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="293" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="51c3d626-7954-47d0-af9b-cfa634a5f446"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="293" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="51c3d626-7954-47d0-af9b-cfa634a5f446">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1444,12 +1481,12 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="265" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="29fbabad-0677-4815-89eb-da41d4ee71a4"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="265" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="29fbabad-0677-4815-89eb-da41d4ee71a4"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="260" height="14" forecolor="#333333" uuid="02a1ccd3-8868-45a0-97dc-7b1b24cb5a8d">
+					<reportElement x="0" y="0" width="215" height="14" forecolor="#333333" uuid="02a1ccd3-8868-45a0-97dc-7b1b24cb5a8d">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement>
@@ -1459,17 +1496,19 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</staticText>
 			</frame>
 			<rectangle>
-				<reportElement x="0" y="176" width="550" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="2d15ca96-20b4-4c7b-8f78-63f041c2888e"/>
+				<reportElement x="0" y="176" width="555" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="2d15ca96-20b4-4c7b-8f78-63f041c2888e"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="10" y="178" width="100" height="16" forecolor="#FFFFFF" uuid="85cc8ee1-72a4-498c-99d5-5cfe0f6e9798"/>
+				<reportElement x="10" y="179" width="100" height="16" forecolor="#FFFFFF" uuid="85cc8ee1-72a4-498c-99d5-5cfe0f6e9798"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Prescribing]]></text>
 			</staticText>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="280" y="307" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="2f1875eb-1b2f-485e-a48a-607b199156fb"/>
+				<reportElement positionType="Float" mode="Opaque" x="280" y="307" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="2f1875eb-1b2f-485e-a48a-607b199156fb">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
@@ -1483,7 +1522,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<text><![CDATA[Controlled Substance Low Count]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="170" y="0" width="83" height="13" uuid="8c4675e6-a066-4e81-a259-89b355c187cf">
+					<reportElement x="171" y="0" width="83" height="13" uuid="8c4675e6-a066-4e81-a259-89b355c187cf">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -1494,15 +1533,29 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="307" width="260" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="a91b20e0-1200-4b61-be35-22b1e55acb4a"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="307" width="268" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="a91b20e0-1200-4b61-be35-22b1e55acb4a"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.3" lineColor="#DDDDDD"/>
 				</box>
 			</frame>
+			<rectangle>
+				<reportElement x="-1" y="0" width="555" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="9b342e4e-a099-4ac0-835b-7a9c5812b9cf"/>
+			</rectangle>
+			<textField>
+				<reportElement x="10" y="3" width="530" height="16" forecolor="#FFFFFF" uuid="4babbdc8-423d-45a1-87a7-6672ad3587d1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BeneficiaryName} + " (" + $F{BeneficiaryNumber} + ")"]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="38">
 			<subreport isUsingCache="false">
-				<reportElement x="1" y="2" width="549" height="28" uuid="763bc8e5-ff08-4e8a-82e8-32828e2bb2d2"/>
+				<reportElement x="1" y="2" width="554" height="28" uuid="763bc8e5-ff08-4e8a-82e8-32828e2bb2d2">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
 				<subreportParameter name="RequestId">
 					<subreportParameterExpression><![CDATA[$P{RequestId}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -1512,14 +1565,16 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 		</band>
 		<band height="40">
 			<frame>
-				<reportElement x="0" y="0" width="550" height="40" uuid="3474e631-de1c-49eb-8349-76ef976a8cd2"/>
+				<reportElement x="0" y="0" width="555" height="40" uuid="3474e631-de1c-49eb-8349-76ef976a8cd2"/>
 				<subreport isUsingCache="false">
-					<reportElement x="1" y="4" width="548" height="25" uuid="6a5593bf-fb8b-41d4-8c79-1a28efc98098"/>
+					<reportElement x="1" y="4" width="554" height="25" uuid="6a5593bf-fb8b-41d4-8c79-1a28efc98098">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
 					<subreportParameter name="RequestId">
 						<subreportParameterExpression><![CDATA[$P{RequestId}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression><![CDATA["DrugConsumption_SR_v3.jrxml"]]></subreportExpression>
+					<subreportExpression><![CDATA["DrugConsumption_SR_v2.jrxml"]]></subreportExpression>
 				</subreport>
 			</frame>
 		</band>

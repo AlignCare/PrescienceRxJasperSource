@@ -20,7 +20,7 @@ SELECT
 	[AgeGroup],
 	[Age],
 	[DateOfBirthText] ,
-	[MonthYear],
+	DateName( month , DateAdd( month , CAST(LEFT([MonthYear], 2) AS INT) , -1 )) + ' ' + RIGHT([MonthYear],4) MonthYear_Desc,
 	[ConcurrentDrugsAllDrugs],
 	[COA],
 	[ZipCode],

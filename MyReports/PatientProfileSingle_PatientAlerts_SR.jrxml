@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-18T17:04:10 -->
+<!-- 2017-04-19T17:37:54 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PatientAlerts_SR" pageWidth="360" pageHeight="98" columnWidth="360" leftMargin="0" rightMargin="0" topMargin="4" bottomMargin="0" uuid="208225ca-931f-49a9-b0a1-ffec2ba6c755">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
 	<property name="ireport.jasperserver.url" value="http://presciencejrs.cloudapp.net/jasperserver/"/>
 	<property name="ireport.jasperserver.user" value="jasperadmin"/>
-	<property name="ireport.jasperserver.reportUnit" value="/reports/PatientAlerts_SR_v3"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/PatientProfileSingle_PatientAlerts_SR"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
