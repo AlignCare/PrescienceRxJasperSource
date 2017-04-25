@@ -1,6 +1,7 @@
 USE [PrescienceRxReportingDev]
 GO
-
+--DROP TABLE #b1
+--DROP TABLE #b2
 SELECT 
 	MAX([BeneficiaryNumber]) as [BeneficiaryNumber],
 	MAX([FirstName] + ' ' + [LastName]) as [BeneficiaryName],
@@ -19,11 +20,10 @@ SELECT
 	MAX([Polypharm]) as [Polypharm],
 	MAX([Polyprescriber]) as [Polyprescriber],
 	MAX([TheraputicComplexity]) as [TheraputicComplexity],
-	[AlertDescription],
-	[AlertLevelName],
 	[Id]
+	INTO #b1
 FROM OPENJSON((SELECT[JSONREC]
-  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.PatientList')
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed-patient-cohort]),'$.PatientList')
   WITH (
   
 	[BeneficiaryNumber] varchar(255) '$.BeneficiaryNumber',
@@ -45,9 +45,25 @@ FROM OPENJSON((SELECT[JSONREC]
 	[Polypharm]  INT '$.Polypharm',
 	[Polyprescriber]  INT '$.Polyprescriber',
 	[TheraputicComplexity]  INT '$.TheraputicComplexity',
+	[Id]   varchar(255) '$.Id'
+  )
+
+  GROUP BY [Id]
+
+ 
+
+  SELECT 
+  Max([AlertDescription]) as [AlertDescription],
+   Max([AlertLevelName]) as [AlertLevelName],
+	[Id]
+	INTO #b2
+FROM OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed-patient-cohort]),'$.PatientList')
+  WITH (
+ 
 	[Id]   varchar(255) '$.Id',
-    PatientAlerts nvarchar(max) AS JSON,
-	DrugConsumptionDetails  nvarchar(max) AS JSON
+    PatientAlerts nvarchar(max) AS JSON
+
   )
 
 CROSS APPLY OPENJSON (PatientAlerts) WITH (
@@ -57,6 +73,15 @@ CROSS APPLY OPENJSON (PatientAlerts) WITH (
 
 GROUP BY [Id], [AlertDescription],
 	[AlertLevelName]
+ORDER BY [Id]
+
+
+SELECT b1.*, b2.AlertDescription, b2.AlertLevelName
+FROM #b1 b1
+INNER JOIN #b2 b2
+ON b1.Id = b2.Id
+WHERE b1.BeneficiaryNumber = '03965';
+
 
 
   FROM [dbo].[rf0f1cdb2288d4e9b82eb307385b1aaed]),'$.PatientList.PatientAlerts' ) 
