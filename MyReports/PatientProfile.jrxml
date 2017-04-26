@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-25T21:05:46 -->
+<!-- 2017-04-26T10:47:46 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PatientProfile" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Key" uuid="72a85a3c-e721-45fb-95cf-948f9e0350ca">
 	<property name="net.sf.jasperreports.data.adapter" value="repo:/reports/PatientDatabase.xml"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
 	<property name="ireport.jasperserver.url" value="http://presciencejrs.cloudapp.net/jasperserver/"/>
 	<property name="ireport.jasperserver.user" value="jasperadmin"/>
 	<property name="ireport.jasperserver.reportUnit" value="/reports/PatientProfile"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/PatientProfile_files/main_jrxml"/>
 	<parameter name="RequestId" class="java.lang.String"/>
 	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["r" + $P{RequestId}.replaceAll("-","")]]></defaultValueExpression>
@@ -44,7 +45,12 @@
 	  ,MAX(AbusePotentialDrugsControlledSubstanceLowCount) AbusePotentialDrugsControlledSubstanceLowCount
 	  ,MAX([ActionAlerts]) ActionAlerts
       ,MAX([Gender]) Gender   
-      ,MAX(Convert(varchar(10),[DOB],102)) DOB  	 	  	        
+      ,MAX(Convert(varchar(10),[DOB],102)) DOB  	
+      ,MAX([Product]) Product  
+      ,MAX([Region]) Region  
+      ,MAX([Group]) [Group]  
+      ,MAX([Site]) [Site]  
+      ,CASE WHEN MAX(0+[PredominentProviderIsNetworkParticipant]) = 0 THEN 'False' ELSE 'True' END [PredominentProviderIsNetworkParticipant] 	    	  	  	  	   	              	  	        
       ,pd.[ConditionName] ConditionName
       ,pd.[ConditionImpact] ConditionImpact
       ,pd.[EmergentType] EmergentType
@@ -86,6 +92,11 @@
 	<field name="ActionAlerts" class="java.lang.String"/>
 	<field name="Gender" class="java.lang.String"/>
 	<field name="DOB" class="java.lang.String"/>
+	<field name="Product" class="java.lang.String"/>
+	<field name="Region" class="java.lang.String"/>
+	<field name="Group" class="java.lang.String"/>
+	<field name="Site" class="java.lang.String"/>
+	<field name="PredominentProviderIsNetworkParticipant" class="java.lang.String"/>
 	<field name="EmergentType" class="java.lang.String"/>
 	<field name="ConditionName" class="java.lang.String"/>
 	<field name="ConditionImpact" class="java.lang.String"/>
@@ -97,7 +108,7 @@
 	<group name="BeneficiaryNumberGroup" minHeightToStartNewPage="60">
 		<groupExpression><![CDATA[$F{Id}]]></groupExpression>
 		<groupHeader>
-			<band height="551">
+			<band height="561">
 				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				<textField evaluationTime="Group" evaluationGroup="BeneficiaryNumberGroup" bookmarkLevel="1">
 					<reportElement mode="Opaque" x="0" y="0" width="550" height="17" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="da16cc28-bea3-4bad-9ebc-c3b8d54e1e9b">
@@ -373,6 +384,16 @@
 						</textElement>
 						<text><![CDATA[Product]]></text>
 					</staticText>
+					<textField>
+						<reportElement x="120" y="0" width="101" height="13" uuid="aea1b419-e137-409f-9268-c0f06cf6cbbf">
+							<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{Product}]]></textFieldExpression>
+					</textField>
 				</frame>
 				<frame>
 					<reportElement positionType="Float" mode="Opaque" x="280" y="37" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="33af077c-54bf-4f77-bef1-9cfbfca35b47"/>
@@ -394,6 +415,16 @@
 						</textElement>
 						<text><![CDATA[Region]]></text>
 					</staticText>
+					<textField>
+						<reportElement x="120" y="0" width="101" height="13" uuid="7ded2a8f-ed96-4f2f-9c3d-8d80399569c0">
+							<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{Region}]]></textFieldExpression>
+					</textField>
 				</frame>
 				<frame>
 					<reportElement positionType="Float" mode="Opaque" x="280" y="65" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="97335cf3-f8fe-481e-be8a-1d1150382762"/>
@@ -409,6 +440,16 @@
 						</textElement>
 						<text><![CDATA[Site]]></text>
 					</staticText>
+					<textField>
+						<reportElement x="120" y="0" width="101" height="13" uuid="e1a64cfa-c61a-41f2-b933-7cfaa698cd7c">
+							<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{Site}]]></textFieldExpression>
+					</textField>
 				</frame>
 				<frame>
 					<reportElement positionType="Float" mode="Opaque" x="280" y="51" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#305496" backcolor="#F3F4F5" uuid="93b3bd47-de6f-4753-9341-c7d30d5216eb"/>
@@ -430,6 +471,16 @@
 						</textElement>
 						<text><![CDATA[Group]]></text>
 					</staticText>
+					<textField>
+						<reportElement x="120" y="0" width="101" height="13" uuid="87d573c5-8e20-4e18-9537-ea609400dc11">
+							<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{Group}]]></textFieldExpression>
+					</textField>
 				</frame>
 				<frame>
 					<reportElement positionType="Float" mode="Opaque" x="280" y="93" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="9f805f52-b4d5-467a-885a-69c33a4c0a76"/>
@@ -543,6 +594,16 @@
 						</textElement>
 						<text><![CDATA[Network Participant]]></text>
 					</staticText>
+					<textField>
+						<reportElement x="120" y="0" width="150" height="13" uuid="8226545a-ed4b-44eb-adbf-42caa9ecd387">
+							<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{PredominentProviderIsNetworkParticipant}]]></textFieldExpression>
+					</textField>
 				</frame>
 				<frame>
 					<reportElement positionType="Float" mode="Opaque" x="280" y="149" width="270" height="14" isRemoveLineWhenBlank="true" forecolor="#333333" backcolor="#FFFFFF" uuid="a83947b7-23b3-4bea-b578-d06d968f7e9a"/>
@@ -1177,14 +1238,59 @@
 					<textFieldExpression><![CDATA[$F{ActionAlerts}]]></textFieldExpression>
 				</textField>
 				<rectangle>
-					<reportElement x="0" y="520" width="550" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="f072ecc0-af01-4619-9663-d9f4a10e7903"/>
+					<reportElement x="1" y="521" width="549" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="f072ecc0-af01-4619-9663-d9f4a10e7903"/>
 				</rectangle>
 				<staticText>
-					<reportElement x="10" y="522" width="166" height="16" forecolor="#FFFFFF" uuid="97ed2886-2a53-4f4a-abf5-4a05ce9b3fea"/>
+					<reportElement x="11" y="523" width="165" height="16" forecolor="#FFFFFF" uuid="97ed2886-2a53-4f4a-abf5-4a05ce9b3fea"/>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
 					<text><![CDATA[Implied Diagnosis (RxMG)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="200" y="542" width="78" height="14" forecolor="#333333" uuid="4cd1d5f4-0270-4a6f-ae21-65f6b5d38184">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Impact]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="300" y="542" width="139" height="14" forecolor="#333333" uuid="301cd301-7146-4530-8c08-b4304b442586">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Emergent Condition]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2" y="542" width="78" height="14" forecolor="#333333" uuid="e48bf930-3dbf-4e40-9975-806837e4d010">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[RxMG]]></text>
 				</staticText>
 			</band>
 		</groupHeader>
@@ -1262,7 +1368,7 @@
 				<textFieldExpression><![CDATA[$F{EmergentType}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="195" height="12" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="0ba2c01b-5fe7-487e-8a7e-71db3f899df5">
+				<reportElement x="2" y="0" width="195" height="12" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="0ba2c01b-5fe7-487e-8a7e-71db3f899df5">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textElement>
@@ -1272,7 +1378,7 @@
 				<textFieldExpression><![CDATA[$F{ConditionName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="200" y="1" width="35" height="12" uuid="6845ffef-2866-40ae-ae3a-24a2d77dde9d">
+				<reportElement x="200" y="0" width="35" height="12" uuid="6845ffef-2866-40ae-ae3a-24a2d77dde9d">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textElement>
@@ -1282,6 +1388,5 @@
 				<textFieldExpression><![CDATA[$F{ConditionImpact}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="50"/>
 	</detail>
 </jasperReport>
