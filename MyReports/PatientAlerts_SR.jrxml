@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-04-17T17:12:50 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PatientAlerts_SR" pageWidth="360" pageHeight="842" columnWidth="320" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="208225ca-931f-49a9-b0a1-ffec2ba6c755">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
+	<property name="ireport.jasperserver.url" value="http://presciencejrs.cloudapp.net/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/PatientAlerts_SR"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/PatientAlerts_SR_files/main_jrxml"/>
+	<parameter name="RequestId" class="java.lang.String"/>
+	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["r" + $P{RequestId}.replaceAll("-","")]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT [AlertDescription],
+  [AlertLevelName]
+FROM OPENJSON((SELECT[JSONREC]
+   FROM [dbo].[$P!{TbName}]),'$.PatientAlerts' )
+  WITH (
+  		[AlertDescription] varchar(255) '$.AlertDescription',
+		[AlertLevelName] varchar(255) '$.AlertLevelName'
+  )]]>
+	</queryString>
+	<field name="AlertDescription" class="java.lang.String"/>
+	<field name="AlertLevelName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="31">
+			<rectangle>
+				<reportElement x="-20" y="1" width="340" height="30" backcolor="#3C8DBC" uuid="55506739-4053-45e8-baab-c6b85136da7a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="-10" y="9" width="100" height="14" forecolor="#FFFFFF" uuid="17e42440-30b0-450f-bc81-09562b44f309"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="201" y="9" width="100" height="14" forecolor="#FFFFFF" uuid="deee8f97-dbab-45e7-b1f4-a020cb1a660f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Level]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="-10" y="0" width="210" height="14" uuid="82d07cd5-8eab-4e06-89a4-5715d3602912">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{AlertDescription}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="0" width="119" height="14" uuid="2d651ab4-1539-4726-ba51-ca49fbc3b26f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{AlertLevelName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

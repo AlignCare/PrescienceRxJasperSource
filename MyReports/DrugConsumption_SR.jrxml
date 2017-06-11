@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-04-18T16:00:31 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ImpliedDiagnosis_SR" pageWidth="680" pageHeight="802" columnWidth="660" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="47d6b3dc-5c22-4739-a233-6f689fac219a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
+	<property name="ireport.jasperserver.url" value="http://presciencejrs.cloudapp.net/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/DrugConsumption_SR"/>
+	<parameter name="Id" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="RequestId" class="java.lang.String"/>
+	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["r" + $P{RequestId}.replaceAll("-","")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+[ConditionName],
+ [DrugName] ,
+[IsBrand],
+[TheraputicClass],
+[IsControlledSubstance],
+[TheraputicIntent],
+[ComplianceIssueText],
+[NewCount],
+[RefillCount],
+[BrandNameDrugText]
+FROM OPENJSON((SELECT[JSONREC]
+  FROM [dbo].[$P!{TbName}]),'$.ConditionDrugDetailModel' ) 
+  WITH (
+  			[ConditionName] varchar(255) '$.DrugCondition.ConditionName',
+  		[DrugList] nvarchar(max) AS JSON
+  )
+  CROSS APPLY OPENJSON ([DrugList]) WITH (
+			[DrugName] varchar(255) '$.Drug.DrugName',
+			[IsBrand] bit '$.Drug.IsBrand',
+			[TheraputicClass] varchar(255) '$.Drug.TheraputicClass',
+			[IsControlledSubstance] bit '$.Drug.IsControlledSubstance',
+			[TheraputicIntent] varchar(255) '$.Drug.TheraputicIntent',
+			[ComplianceIssueText] varchar(12) '$.Drug.ComplianceIssueText',
+			[NewCount] INT '$.Drug.NewCount',
+			[RefillCount] INT '$.Drug.RefillCount',
+			[BrandNameDrugText] varchar(255) '$.Drug.BrandNameDrugText'
+  )
+  WHERE [DrugName]  IS NOT NULL]]>
+	</queryString>
+	<field name="ConditionName" class="java.lang.String"/>
+	<field name="DrugName" class="java.lang.String"/>
+	<field name="TheraputicClass" class="java.lang.String"/>
+	<field name="IsControlledSubstance" class="java.lang.Boolean"/>
+	<field name="TheraputicIntent" class="java.lang.String"/>
+	<field name="ComplianceIssueText" class="java.lang.String"/>
+	<field name="IsBrand" class="java.lang.Boolean"/>
+	<field name="NewCount" class="java.lang.Integer"/>
+	<field name="RefillCount" class="java.lang.Integer"/>
+	<field name="BrandNameDrugText" class="java.lang.String"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{ConditionName}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<textField>
+					<reportElement x="0" y="1" width="368" height="14" uuid="6f724759-5b8e-4ce4-af65-be5046fc9d0b">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ConditionName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<detail>
+		<band height="108">
+			<frame>
+				<reportElement x="4" y="0" width="550" height="99" uuid="9e2541f8-3cd3-4b74-80f6-2ff03ad4d81c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineColor="#C8C8C8"/>
+				</box>
+				<textField>
+					<reportElement x="110" y="0" width="230" height="14" uuid="6a65144f-42f8-43e9-ba53-714233b7a21a">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$F{DrugName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="110" y="60" width="230" height="14" uuid="6a65144f-42f8-43e9-ba53-714233b7a21a">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$F{TheraputicClass}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="85" height="14" forecolor="#5BA7E7" uuid="caa6e6b5-4db0-4de1-a90b-4cb4f7b5bd6c">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[DrugName:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="60" width="85" height="14" forecolor="#5BA7E7" uuid="47622631-f87b-4ca7-8a5d-9ffd56e88547">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Therapeutic Class:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="20" width="88" height="14" forecolor="#5BA7E7" uuid="c09e5bed-d4ce-4a1b-b329-23262e093416">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Brand Name Drug:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="40" width="108" height="14" forecolor="#5BA7E7" uuid="df64c72c-bfba-46cb-ae69-524e25b6c511">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Controlled Substance:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="81" width="108" height="14" forecolor="#5BA7E7" uuid="6e1aa5ac-4699-4ffe-94d3-aee973e8b948">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Therapeutic Intent:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="341" y="0" width="99" height="14" forecolor="#5BA7E7" uuid="c8fa0b3d-0dc6-42ed-b6df-46a4f627c5ca">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Compliance Issue:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="341" y="20" width="100" height="14" forecolor="#5BA7E7" uuid="55ecc952-f29d-4f8f-bd84-cdfedfcb8ca4">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[New Prescriptions:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="342" y="40" width="100" height="14" forecolor="#5BA7E7" uuid="e45842c2-cf00-4c89-9ae8-692a04fc8d8b">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Refills:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="110" y="20" width="230" height="14" uuid="53ae6d80-7b46-4910-87a7-e50ea5566995">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$F{BrandNameDrugText}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="110" y="40" width="230" height="14" uuid="246ba482-9cf9-4283-a0bc-47d22b60a7c0">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$F{IsControlledSubstance}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="110" y="80" width="230" height="14" uuid="459c60e8-7918-46e8-be2e-fc945049ef83">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$F{TheraputicIntent}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="440" y="0" width="110" height="14" uuid="21fae871-4547-420a-b6b0-1d1ac74c227a">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$F{ComplianceIssueText}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="441" y="20" width="109" height="14" uuid="3c3ca210-64b3-4507-97ff-69d16726023e">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$F{NewCount}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="442" y="40" width="108" height="14" uuid="1146095e-d776-4924-ad8e-b65c364f92b9">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$F{RefillCount}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>
