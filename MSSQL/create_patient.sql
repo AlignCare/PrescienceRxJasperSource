@@ -58,7 +58,12 @@ DECLARE @SQLString NVARCHAR(MAX)
     [AbusePotentialDrugsControlledSubstanceLowCount][int] NULL,
 	[ActionAlerts] [varchar](MAX) NULL,
 	[Gender] char(1) NULL,
-	[DOB] varchar(255) NULL
+	[DOB] varchar(255) NULL,
+	[Product] varchar(255) NULL,
+	[Region] varchar(255) NULL,
+	[Group] varchar(255) NULL,
+	[Site] varchar(255) NULL,
+	[PredominentProviderIsNetworkParticipant] [bit] NULL
 ) '
 
 EXEC (@SQLString)
