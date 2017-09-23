@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-19T17:37:54 -->
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PatientAlerts_SR" pageWidth="360" pageHeight="98" columnWidth="360" leftMargin="0" rightMargin="0" topMargin="4" bottomMargin="0" uuid="208225ca-931f-49a9-b0a1-ffec2ba6c755">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
@@ -43,12 +42,6 @@ FROM OPENJSON((SELECT[JSONREC]
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{AlertDescription}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="170" y="0" width="90" height="14" uuid="2d651ab4-1539-4726-ba51-ca49fbc3b26f">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{AlertLevelName}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
