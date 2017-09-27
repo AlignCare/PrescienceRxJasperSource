@@ -371,7 +371,7 @@ CROSS APPLY OPENJSON((SELECT[JSONREC]
 					<textElement>
 						<font isBold="false"/>
 					</textElement>
-					<text><![CDATA[Reported]]></text>
+					<text><![CDATA[Enrolled]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="90" y="1" width="180" height="13" uuid="1d91176f-2e29-4db5-8a85-4cec87e792d4">
