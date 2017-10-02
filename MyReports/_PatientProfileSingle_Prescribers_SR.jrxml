@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ImpliedDiagnosis_SR" pageWidth="680" pageHeight="802" columnWidth="660" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="47d6b3dc-5c22-4739-a233-6f689fac219a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PatientDatabase.xml"/>
+	<property name="ireport.jasperserver.url" value="http://presciencejrsqa9812.cloudapp.net/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/_PatientProfileSingle_Prescribers_SR"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/_PatientProfileSingle_Prescribers_SR_files/main_jrxml"/>
+	<parameter name="Id" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="RequestId" class="java.lang.String"/>
+	<parameter name="TbName" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["r" + $P{RequestId}.replaceAll("-","")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT [NPI]
+			  ,[FullName]
+			  ,[PhoneNumber]
+			  ,case [IsACOParticipant] when 't' then 'Yes' else 'No' end AS [IsInNetwork]
+			  ,[SpecialtyName]
+			FROM OPENJSON((SELECT[JSONREC]
+			   FROM [dbo].[$P!{TbName}]),'$.Prescribers' )
+			  WITH (
+			  		[NPI] varchar(25) '$.NPI',
+					[FullName] varchar(255) '$.FullName',
+					[PhoneNumber] varchar(25) '$.PhoneNumber',
+					[IsACOParticipant] varchar(1) '$.IsACOParticipant',
+					[SpecialtyName] varchar(255) '$.SpecialtyName'
+			  )]]>
+	</queryString>
+	<field name="NPI" class="java.lang.String"/>
+	<field name="FullName" class="java.lang.String"/>
+	<field name="PhoneNumber" class="java.lang.String"/>
+	<field name="IsInNetwork" class="java.lang.String"/>
+	<field name="SpecialtyName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<columnHeader>
+		<band height="41">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<rectangle>
+				<reportElement x="0" y="0" width="559" height="20" forecolor="#FFFFFF" backcolor="#3C8DBC" uuid="57d39b3a-32ba-4429-81f9-b40cbc774cd2">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="3" width="219" height="16" forecolor="#FFFFFF" uuid="f401792d-ea2d-4a93-95db-4b4e89b12512">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prescribers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="14" uuid="35946290-def8-452b-b0e0-1fdc06ceab6d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pescriber name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="20" width="53" height="14" uuid="8a303812-de97-4865-b94a-fc809ef44242">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[In Network]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="21" width="78" height="14" uuid="090cf9eb-cb5c-43de-8217-bd355ceb43d7">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="21" width="100" height="14" uuid="505460ff-a8a7-4aea-bee0-53ed3ae8597d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Specialty]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="238" height="14" uuid="6f724759-5b8e-4ce4-af65-be5046fc9d0b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{FullName}.concat(" (").concat($F{NPI}).concat(")")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="0" width="121" height="14" uuid="6a65144f-42f8-43e9-ba53-714233b7a21a">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{SpecialtyName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="-1" width="53" height="14" uuid="5da6d5fa-5798-4802-abe7-22e3ba48b664">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{IsInNetwork}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="-1" width="90" height="14" uuid="abbd4ba1-c0ef-42d0-991b-ee857dd03734">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{PhoneNumber}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
