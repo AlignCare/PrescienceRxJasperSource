@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-06-21T10:58:01 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="json_from_url" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bd63bbf5-d0fd-43b0-9d92-222336a6f346">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JSON from URL"/>
+	<queryString language="json">
+		<![CDATA[PatientList]]>
+	</queryString>
+	<field name="BeneficiaryNumber" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="BeneficiaryNumber"/>
+		<fieldDescription><![CDATA[BeneficiaryNumber]]></fieldDescription>
+	</field>
+	<field name="Product" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="Product"/>
+		<fieldDescription><![CDATA[Product]]></fieldDescription>
+	</field>
+	<field name="ReportedDate" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="ReportedDate"/>
+		<fieldDescription><![CDATA[ReportedDate]]></fieldDescription>
+	</field>
+	<field name="FirstName" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="FirstName"/>
+		<fieldDescription><![CDATA[FirstName]]></fieldDescription>
+	</field>
+	<field name="LastName" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="LastName"/>
+		<fieldDescription><![CDATA[LastName]]></fieldDescription>
+	</field>
+	<field name="Gender" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="Gender"/>
+		<fieldDescription><![CDATA[Gender]]></fieldDescription>
+	</field>
+	<field name="DOB" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="DOB"/>
+		<fieldDescription><![CDATA[DOB]]></fieldDescription>
+	</field>
+	<field name="MERLevel" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="MERLevel"/>
+		<fieldDescription><![CDATA[MERLevel]]></fieldDescription>
+	</field>
+	<field name="Polypharm" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="Polypharm"/>
+		<fieldDescription><![CDATA[Polypharm]]></fieldDescription>
+	</field>
+	<field name="Polyprescriber" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="Polyprescriber"/>
+		<fieldDescription><![CDATA[Polyprescriber]]></fieldDescription>
+	</field>
+	<field name="TheraputicComplexity" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="TheraputicComplexity"/>
+		<fieldDescription><![CDATA[TheraputicComplexity]]></fieldDescription>
+	</field>
+	<field name="CoordinationRisk" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="CoordinationRisk"/>
+		<fieldDescription><![CDATA[CoordinationRisk]]></fieldDescription>
+	</field>
+	<field name="ConcurrentDrugCount" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="ConcurrentDrugCount"/>
+		<fieldDescription><![CDATA[ConcurrentDrugCount]]></fieldDescription>
+	</field>
+	<field name="MERActualLevel" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="MERActualLevel"/>
+		<fieldDescription><![CDATA[MERActualLevel]]></fieldDescription>
+	</field>
+	<field name="AgeGroup" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="AgeGroup"/>
+		<fieldDescription><![CDATA[AgeGroup]]></fieldDescription>
+	</field>
+	<field name="Age" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="Age"/>
+		<fieldDescription><![CDATA[Age]]></fieldDescription>
+	</field>
+	<field name="LoadDate" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="LoadDate"/>
+		<fieldDescription><![CDATA[LoadDate]]></fieldDescription>
+	</field>
+	<field name="CustomFields" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="CustomFields"/>
+		<fieldDescription><![CDATA[CustomFields]]></fieldDescription>
+	</field>
+	<field name="PredominentProvider" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="PredominentProvider"/>
+		<fieldDescription><![CDATA[PredominentProvider]]></fieldDescription>
+	</field>
+	<field name="DifferentPrescribers" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="DifferentPrescribers"/>
+		<fieldDescription><![CDATA[DifferentPrescribers]]></fieldDescription>
+	</field>
+	<field name="UniqueDrugs" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="UniqueDrugs"/>
+		<fieldDescription><![CDATA[UniqueDrugs]]></fieldDescription>
+	</field>
+	<field name="ConcurrentDrugs" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="ConcurrentDrugs"/>
+		<fieldDescription><![CDATA[ConcurrentDrugs]]></fieldDescription>
+	</field>
+	<field name="AbusePotentialDrugs" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="AbusePotentialDrugs"/>
+		<fieldDescription><![CDATA[AbusePotentialDrugs]]></fieldDescription>
+	</field>
+	<field name="PatientAlerts" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="PatientAlerts"/>
+		<fieldDescription><![CDATA[PatientAlerts]]></fieldDescription>
+	</field>
+	<field name="DrugConsumptionDetails" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="DrugConsumptionDetails"/>
+		<fieldDescription><![CDATA[DrugConsumptionDetails]]></fieldDescription>
+	</field>
+	<field name="ImpliedDiagnosis" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="ImpliedDiagnosis"/>
+		<fieldDescription><![CDATA[ImpliedDiagnosis]]></fieldDescription>
+	</field>
+	<field name="MriData" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="MriData"/>
+		<fieldDescription><![CDATA[MriData]]></fieldDescription>
+	</field>
+	<field name="Id" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="Id"/>
+		<fieldDescription><![CDATA[Id]]></fieldDescription>
+	</field>
+	<field name="CustomerId" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="CustomerId"/>
+		<fieldDescription><![CDATA[CustomerId]]></fieldDescription>
+	</field>
+	<field name="MonthYear" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="MonthYear"/>
+		<fieldDescription><![CDATA[MonthYear]]></fieldDescription>
+	</field>
+	<field name="LOB" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="LOB"/>
+		<fieldDescription><![CDATA[LOB]]></fieldDescription>
+	</field>
+	<group name="Id">
+		<groupExpression><![CDATA[$F{Id}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

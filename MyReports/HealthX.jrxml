@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-07-23T20:07:04 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HealthX" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="67bb6f16-6730-43a9-8f6c-62c9d07c9b2b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DevJasperReportsServer-1\reports\PatientDatabase.xml"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT  
+	  CONCAT (datepart (yy,CONVERT(Datetime,[LastFilledDate])), FORMAT (CONVERT(Datetime,[LastFilledDate]),'MM')) YearMonth
+       ,[PatientId]
+      ,[RxFillDate]
+ --     ,[firstname]
+--	  ,[lastname]
+--      ,[dob]
+--      ,[gender]
+ --     ,[zip]
+      ,[drug]
+      ,[ProductCode]
+      ,[ProductCodeQualifier]
+      ,[Strength]
+      ,[DrugDBCode]
+      ,[QtyVal]
+      ,[DaysSupply]
+      ,[WrittenDate]
+     -- ,[LastFilledDate]
+	  ,CONVERT(char(10), [LastFilledDate],126) LastFilledDate
+      ,[FillNumber]
+      ,[begindate]
+      ,[enddate]
+      ,[PharmacyID]
+      ,[PrsID]
+
+  --    ,[Requestornpi]
+  --    ,[Requestorname]
+ --     ,[resultdate]
+  --    ,[status]
+
+  --INTO HealthX
+  FROM [dbo].[PHARMDATA]
+  Order By PatientId, YearMonth, [RxFillDate],ProductCode]]>
+	</queryString>
+	<field name="YearMonth" class="java.lang.String"/>
+	<field name="PatientId" class="java.lang.String"/>
+	<field name="RxFillDate" class="java.lang.String"/>
+	<field name="drug" class="java.lang.String"/>
+	<field name="ProductCode" class="java.lang.String"/>
+	<field name="ProductCodeQualifier" class="java.lang.String"/>
+	<field name="Strength" class="java.lang.String"/>
+	<field name="DrugDBCode" class="java.lang.String"/>
+	<field name="QtyVal" class="java.lang.String"/>
+	<field name="DaysSupply" class="java.lang.String"/>
+	<field name="WrittenDate" class="java.lang.String"/>
+	<field name="LastFilledDate" class="java.lang.String"/>
+	<field name="FillNumber" class="java.lang.String"/>
+	<field name="begindate" class="java.lang.String"/>
+	<field name="enddate" class="java.lang.String"/>
+	<field name="PharmacyID" class="java.lang.String"/>
+	<field name="PrsID" class="java.lang.String"/>
+	<group name="PatientId">
+		<groupExpression><![CDATA[$F{PatientId}]]></groupExpression>
+	</group>
+	<group name="YearMonth">
+		<groupExpression><![CDATA[$F{YearMonth}]]></groupExpression>
+	</group>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{PatientId}+$F{YearMonth}]]></groupExpression>
+		<groupFooter>
+			<band height="23">
+				<break>
+					<reportElement x="0" y="10" width="779" height="1" uuid="58058b8b-b587-422f-8e09-85d863276099"/>
+				</break>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="785" height="25" forecolor="#FFFFFF" backcolor="#578FCF" uuid="de0f36c0-b805-4d7a-bbb5-b3ea625a0af5"/>
+			</rectangle>
+			<textField>
+				<reportElement x="21" y="5" width="100" height="20" forecolor="#000000" uuid="dbb69c9c-254c-4b04-81f8-fba8e24824ae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PatientId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="36" width="50" height="19" uuid="19351b3d-3aeb-4a68-9d37-f4aa0e2464eb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Last Fill ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="35" width="100" height="19" uuid="8e310e6f-cf29-4b62-9f9e-9292f5407e95"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Drug Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="35" width="69" height="20" uuid="fae657b9-d3aa-44ad-ae31-cf7c6af3c01a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="36" width="59" height="19" uuid="e3bf78b2-af6b-443b-8a46-bee18260e165"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qualifier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="36" width="50" height="19" uuid="ca9f1b4b-c6e0-4303-9c41-b04158856a40"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[QtyVal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="36" width="50" height="17" uuid="98b1fe97-bb21-4916-adb5-8f4cf046bcad"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Strength]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="36" width="40" height="18" uuid="4f87c7df-2acb-4928-b4ff-e3fc5726186c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Days Supply]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="680" y="38" width="100" height="17" uuid="378cb2da-3733-4d49-99af-dfa0edc74c77"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prescriber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="530" y="39" width="50" height="15" uuid="98dd1f0f-fcbd-4a0a-beff-49974e29a5b1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Written]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="38" width="42" height="17" uuid="e1d96356-cd93-4db1-9315-1b3de9ca1a03"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Begin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="629" y="38" width="42" height="17" uuid="8c4f518c-1e79-484e-867a-0bb862c13785"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[End Date]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="240" y="1" width="90" height="15" uuid="b5b02a2d-9117-4322-980c-e5ddf586e617"/>
+				<textFieldExpression><![CDATA[$F{ProductCode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="0" width="171" height="16" uuid="f4901132-1c19-41f4-8f0b-37e630f7fc5e"/>
+				<textFieldExpression><![CDATA[$F{drug}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="-2" width="50" height="15" uuid="7ca484a4-3f9f-418f-81f1-783a1f1f66f6"/>
+				<textFieldExpression><![CDATA[$F{Strength}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="40" height="16" uuid="75ffb5c1-dbb2-4423-a1a8-5579a3dd3eef"/>
+				<textFieldExpression><![CDATA[$F{DaysSupply}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="680" y="2" width="100" height="15" uuid="9dd82358-ab05-4a64-85c6-72f639a6724e"/>
+				<textFieldExpression><![CDATA[$F{PrsID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="1" width="59" height="15" uuid="bf4f1f8e-7a10-4c0f-8c6d-5d28995a2a09"/>
+				<textFieldExpression><![CDATA[$F{ProductCodeQualifier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="40" height="17" uuid="e27bd91e-d51e-43ec-88f2-dc99874d9c48"/>
+				<textFieldExpression><![CDATA[$F{QtyVal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="1" width="50" height="16" uuid="0697ab02-70ba-4423-8796-fe87fe4fb3c2">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{LastFilledDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="530" y="0" width="50" height="16" uuid="0ff4a03f-d405-48ca-9ad7-136c48104e76">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{WrittenDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="580" y="1" width="48" height="16" uuid="8b0bf6f9-52c2-44c3-890f-83621fa2eb0e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{begindate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="629" y="1" width="49" height="16" uuid="1627c9b7-3997-4b15-a151-4d424218c72e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{enddate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

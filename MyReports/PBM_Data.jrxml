@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-07-23T20:06:50 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_Landscape_1" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e8781009-8ab4-40eb-952f-1d821c2ad96f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DevJasperReportsServer-1\reports\PatientDatabase.xml"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT [PatientId]
+      ,[ProviderId]
+      ,[RxNumber]
+      ,[NewOrRefill]
+      ,[NDC]
+      ,[BrandOrGeneric]
+      ,[DaysSupply]
+    ,CONVERT(char(10), FillDate,126) FillDate
+	  , LEFT(CONVERT(varchar,[FillDate],112),6) YYYYMM
+  FROM [dbo].[PDMData] Order by [PatientId], FillDate]]>
+	</queryString>
+	<field name="PatientId" class="java.lang.String"/>
+	<field name="ProviderId" class="java.lang.String"/>
+	<field name="RxNumber" class="java.lang.String"/>
+	<field name="NewOrRefill" class="java.lang.String"/>
+	<field name="NDC" class="java.lang.String"/>
+	<field name="BrandOrGeneric" class="java.lang.String"/>
+	<field name="DaysSupply" class="java.lang.String"/>
+	<field name="FillDate" class="java.lang.String"/>
+	<field name="YYYYMM" class="java.lang.String"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{PatientId} + $F{YYYYMM}]]></groupExpression>
+		<groupFooter>
+			<band height="26">
+				<break>
+					<reportElement x="0" y="12" width="791" height="1" uuid="3db0aa6b-d9cf-4aff-bb90-6262a83c5985"/>
+				</break>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="785" height="25" forecolor="#FFFFFF" backcolor="#578FCF" uuid="de0f36c0-b805-4d7a-bbb5-b3ea625a0af5"/>
+			</rectangle>
+			<textField>
+				<reportElement x="21" y="5" width="100" height="20" forecolor="#000000" uuid="dbb69c9c-254c-4b04-81f8-fba8e24824ae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PatientId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="36" width="50" height="19" uuid="19351b3d-3aeb-4a68-9d37-f4aa0e2464eb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RxFillDate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="36" width="100" height="19" uuid="8e310e6f-cf29-4b62-9f9e-9292f5407e95"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RxNumber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="37" width="69" height="20" uuid="fae657b9-d3aa-44ad-ae31-cf7c6af3c01a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NDC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="39" width="100" height="17" uuid="98b1fe97-bb21-4916-adb5-8f4cf046bcad"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Brand Or Generic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="40" width="70" height="18" uuid="4f87c7df-2acb-4928-b4ff-e3fc5726186c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Days Supply]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="680" y="39" width="100" height="17" uuid="378cb2da-3733-4d49-99af-dfa0edc74c77"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prescriber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="40" width="100" height="15" uuid="04eba921-9e42-47e3-a55f-3d3b0c6d6c12"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[New Or Refill]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="90" y="1" width="130" height="16" uuid="a642fd00-80f0-4350-b3fd-f775450789a4">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{RxNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="-1" width="100" height="16" uuid="b266aae7-a48e-47f8-af32-b10b6eafa90d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{NDC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="-1" width="80" height="16" uuid="62d7637d-14a1-45b8-89b2-524020b91c78">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{FillDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="100" height="16" uuid="779bfb7f-07a5-456a-9f80-139ae03b0c92">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{DaysSupply}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="100" height="16" uuid="ecba8227-36d8-4d60-9c92-295419f616fb">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{BrandOrGeneric}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="680" y="0" width="100" height="16" uuid="7bcbf87b-9023-425a-904d-194aeb46f39b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{ProviderId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="580" y="-1" width="80" height="16" uuid="608e87e9-7975-4f0d-9547-68c6c9dfbc3b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{NewOrRefill}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
